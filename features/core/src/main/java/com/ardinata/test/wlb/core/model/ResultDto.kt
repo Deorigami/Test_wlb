@@ -3,7 +3,7 @@ package com.ardinata.test.wlb.core.model
 import com.google.gson.annotations.SerializedName
 
 class ResultDto<T>(
-    @SerializedName("results")
+    @SerializedName("drinks")
     val data: T? = null,
 ) {
     companion object {
