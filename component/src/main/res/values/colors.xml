@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Revamp color -->
+    <color name="white_100">#ffffff</color>
+    <color name="black_100">#000000</color>
+
+    <color name="blueGrey">#8e9aa7</color>
+    <color name="darkNavyBlue">#000a12</color>
+    <color name="greyishBrown">#434343</color>
+    <color name="lightPeriwinlke">#dde2e8</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="deepLilac">#987bc6</color>
+    <color name="paleGrey">#f0f2f9</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="whiteGrey">#f2f2f2</color>
+    <color name="lightMustard">#f8cf5a</color>
+    <color name="brightLightBlue">#34cef9</color>
+    <color name="mediumGreen">#3dac51</color>
+    <color name="almostBlack">#0c1219</color>
+    <color name="boringGreen">#53c368</color>
+    <color name="cerulean">#0397c9</color>
+    <color name="brightSkyBlue">#00bcf1</color>
+    <color name="marigold">#ffbc00</color>
+    <color name="lipstick">#da1b45</color>
+    <color name="cloudyBlue">#b8c1cb</color>
+    <color name="lightOliveGreen">#89c353</color>
+    <color name="nastyGreen">#77b341</color>
+    <color name="macaronyAndCheese">#fec935</color>
+    <color name="mustard">#dfa100</color>
+    <color name="robinsEgg">#6bdeff</color>
+    <color name="darkishGreen">#1f732e</color>
+    <color name="deepSkyBlue">#007aff</color>
+    <color name="rustyOrange">#da6014</color>
+    <color name="lightMossGreen">#97d064</color>
+    <color name="paleOrange">#ffa960</color>
+    <color name="fadedOrange">#fb9743</color>
+    <color name="orange">#f48120</color>
+    <color name="rouge">#af183c</color>
+    <color name="darkishGreenTwo">#28903b</color>
+    <color name="battleshipGrey">#6a7481</color>
+    <color name="mossyGreen">#578b2d</color>
+    <color name="dark">#1f2d3d</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#00ffffff</color>
+</resources>

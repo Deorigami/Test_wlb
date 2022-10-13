@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk Build.androidCompileSdkVersion
+    defaultConfig {
+        minSdk Build.androidMinSdkVersion
+        targetSdk Build.androidTargetSdkVersion
+        versionCode Build.appVersionCode
+        versionName Build.appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", '"14186b1dc46241b0b3708e229107c72e"'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", '"14186b1dc46241b0b3708e229107c72e"'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    TestCore.Deps.each { dep ->
+        if (dep.contains("androidx")) {
+            androidTestImplementation dep
+        } else testImplementation dep
+    }
+    Core.Deps.each { dep ->
+        implementation dep
+    }
+    Main.Deps.each { dep ->
+        implementation dep
+    }
+    UI.Deps.each { dep ->
+        implementation dep
+    }
+    Network.Deps.each { dep ->
+        implementation dep
+    }
+    LocalDB.Deps.each { dep ->
+        implementation dep
+    }
+    KaptGroup.Deps.each { dep ->
+        kapt dep
+    }
+    Firebase.Deps.each { dep ->
+        implementation platform(dep)
+    }
+}
