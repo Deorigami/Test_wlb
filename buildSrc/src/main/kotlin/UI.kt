@@ -18,5 +18,6 @@ object UI {
         "com.github.jimcoven:jcropimageview:${Version.jcropImageView}",
         // DraggableView
         "com.github.hyuwah:DraggableView:${Version.draggableView}",
+        "com.google.android.flexbox:flexbox:${Version.flexBox}"
     )
 }

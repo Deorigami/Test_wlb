@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ardinata.test.wlb.template.SimpleHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:hasBackButton="false"
+        app:hasFavButton="false"
+        app:title="@string/page_title"
+        />
+
+    <com.ardinata.test.wlb.organism.BasicTextField
+        android:id="@+id/textFieldView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_marginHorizontal="16dp"
+        app:hint="Search ..."
+        android:layout_marginTop="16dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldView">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/page_empty_state_title"
+            android:textAppearance="@style/TextAppearance.H3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="24dp"
+            android:gravity="center"
+            android:id="@+id/emptyStateTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            app:layout_constraintTop_toBottomOf="@id/emptyStateTitle"
+            android:src="@drawable/ic_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingVertical="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:id="@+id/emptyStateImage"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.ardinata.test.wlb.template.group.CardGroup
+        android:id="@+id/githubUserCards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingVertical="16dp"
+        android:paddingEnd="24dp"
+        android:paddingStart="14dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textFieldView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

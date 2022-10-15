@@ -1,5 +1,6 @@
 package com.eyedea.service_cocktail.data.webservice.mapper
 
+import com.ardinata.test.wlb.core.extension.capitalizeWords
 import com.ardinata.test.wlb.core.extension.tryDeserialize
 import com.ardinata.test.wlb.core.model.Result
 import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
@@ -16,7 +17,12 @@ class CocktailDrinkListDtoMapper @Inject constructor(
             val ingredientsList = cocktailIngredientsJsonMapper.invoke(jsonElement)
             val cocktailItem = tryDeserialize<CocktailDrinkItemEntity>(jsonElement.toString())
             cocktailItem?.let {
-                result.add(it.copy(ingredientList = ingredientsList))
+                result.add(it.copy(
+                    ingredientList = ingredientsList,
+                    glass = it.glass.capitalizeWords(),
+                    category = it.category.capitalizeWords(),
+                    alcoholic = it.alcoholic.capitalizeWords()
+                ))
             }
         }
         return Result(result)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_test_language">This Text is in English</string>
+    <string name="page_title" translatable="false">Recipe For You</string>
+    <string name="page_empty_state_title" translatable="false">Minuman Tidak Ditemukan Berdasarkan Filter</string>
+</resources>

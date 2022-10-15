@@ -9,4 +9,5 @@ interface CocktailRepository {
     suspend fun getGlassesFilter() : Result<FilterEntity>
     suspend fun getAlcoholicFilter() : Result<FilterEntity>
     suspend fun getCocktailList(param: String) : Result<List<CocktailDrinkItemEntity>>
+    suspend fun searchCocktailByName(param: String) : Result<List<CocktailDrinkItemEntity>>
 }

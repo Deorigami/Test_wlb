@@ -44,6 +44,7 @@ object Version {
     const val barcodeScanning              = "16.1.1"
     const val draggableView                = "1.0.0"
     const val picasso                      = "2.71828"
+    const val flexBox                      = "3.0.0"
 
     object Test {
         const val jUnitVersion = "5.9.0"

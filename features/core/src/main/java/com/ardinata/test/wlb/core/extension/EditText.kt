@@ -7,6 +7,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.onStart
+import java.util.*
 
 @CheckResult
 fun EditText.textChanges() : Flow<CharSequence?> {
@@ -19,3 +20,5 @@ fun EditText.textChanges() : Flow<CharSequence?> {
         emit(text)
     }
 }
+
+fun String.capitalizeWords() : String = split(" ").joinToString(" ") { s -> s.replaceFirstChar { it.uppercase() } }

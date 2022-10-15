@@ -19,8 +19,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AnggaArdinata TestWLB"
 include ':app'
+include ':component'
 include ':features:feature_dashboard'
 include ':features:core'
 include ':features:feature_util'
-include ':component'
 include ':features:config'
+
+include 'services:service_cocktail'

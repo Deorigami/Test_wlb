@@ -29,4 +29,8 @@ class CocktailRepositoryImpl @Inject constructor(
     override suspend fun getCocktailList(param: String): Result<List<CocktailDrinkItemEntity>> {
         return cocktailDrinkListDtoMapper.invoke(api.getDrinkList(param))
     }
+
+    override suspend fun searchCocktailByName(param: String): Result<List<CocktailDrinkItemEntity>> {
+        return cocktailDrinkListDtoMapper.invoke(api.searchCocktailByName(param))
+    }
 }

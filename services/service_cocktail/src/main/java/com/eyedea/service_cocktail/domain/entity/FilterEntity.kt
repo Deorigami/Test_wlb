@@ -1,13 +1,15 @@
 package com.eyedea.service_cocktail.domain.entity
 
+import com.eyedea.service_cocktail.domain.resource.FilterType
+
 data class FilterEntity(
     val index: Long,
-    val filterTitle : String,
+    val filterType : FilterType,
     val filterList : List<String>
 ) {
     companion object {
         val DEFAULT = FilterEntity(
-            0,"", emptyList()
+            0,FilterType.Category, emptyList()
         )
     }
 }

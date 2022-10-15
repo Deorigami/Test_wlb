@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RoundedButton" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+    </style>
+
+    <style name="SolidWhite" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/almostBlack</item>
+        <item name="android:height">60dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="rippleColor">@color/lightPeriwinlke</item>
+        <item name="backgroundTint">@color/white_100</item>
+    </style>
+
+    <style name="SolidBlue" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:height">60dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="android:backgroundTint">@color/bg_button_state</item>
+    </style>
+
+    <style name="SolidBlue2" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:height">60dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="android:backgroundTint">@color/bg_button_state</item>
+    </style>
+
+    <style name="SolidCloudyBlue" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:height">60dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="android:backgroundTint">@color/cloudyBlue</item>
+    </style>
+
+    <style name="SolidBlue.Medium" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="android:backgroundTint">@color/bg_button_state</item>
+    </style>
+    <style name="SolidBlue.Small" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="android:backgroundTint">@color/brightSkyBlue</item>
+    </style>
+    <style name="OutlinedBlack.Medium" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/almostBlack</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/battleshipGrey</item>
+        <item name="strokeColor">@color/almostBlack</item>
+    </style>
+    <style name="OutlinedWhite" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAppearance">@style/TextAppearance.BoldM</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:height">60dp</item>
+        <item name="shapeAppearance">@style/RoundedButton</item>
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/almostBlack</item>
+        <item name="strokeColor">@color/white_100</item>
+    </style>
+</resources>

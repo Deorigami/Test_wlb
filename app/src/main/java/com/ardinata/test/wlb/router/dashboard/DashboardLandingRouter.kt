@@ -8,6 +8,7 @@ import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.detail.GameDetailActivity
 import com.ardinata.feature_dashboard.detail.GameDetailPage
 import com.ardinata.feature_dashboard.landing.DashboardLandingActivity
+import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
 import javax.inject.Inject
 
 class DashboardLandingRouter @Inject constructor() : BaseRouter(), DashboardLandingContract.Router {
@@ -17,10 +18,10 @@ class DashboardLandingRouter @Inject constructor() : BaseRouter(), DashboardLand
         context.startActivity(intent)
     }
 
-    override fun navigateToGameDetail(context: Context, id: Long) {
+    override fun navigateToGameDetail(context: Context, drinkItem: CocktailDrinkItemEntity) {
         val intent = Intent(context, GameDetailActivity::class.java)
         intent.putExtras(bundleOf(
-            GameDetailPage.GAME_ID to id
+            GameDetailPage.DRINK_ITEM to drinkItem
         ))
         context.startActivity(intent)
     }

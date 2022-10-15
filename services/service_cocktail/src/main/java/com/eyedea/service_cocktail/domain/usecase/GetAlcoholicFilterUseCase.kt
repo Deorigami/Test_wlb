@@ -13,7 +13,7 @@ class GetAlcoholicFilterUseCase @Inject constructor(
         get() = FilterEntity.DEFAULT
 
     override suspend fun build(param: Unit): Result<FilterEntity> {
-        return repo.getCategoriesFilter()
+        return repo.getAlcoholicFilter()
     }
 
 }

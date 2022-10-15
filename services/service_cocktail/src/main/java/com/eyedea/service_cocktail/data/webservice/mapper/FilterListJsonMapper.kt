@@ -1,8 +1,9 @@
 package com.eyedea.service_cocktail.data.webservice.mapper
 
-import android.util.Log
+import com.ardinata.test.wlb.core.extension.capitalizeWords
 import com.ardinata.test.wlb.core.model.Result
 import com.eyedea.service_cocktail.domain.entity.FilterEntity
+import com.eyedea.service_cocktail.domain.resource.FilterType
 import com.google.gson.JsonElement
 import javax.inject.Inject
 
@@ -10,22 +11,22 @@ class FilterListJsonMapper @Inject constructor() {
     operator fun invoke(from : JsonElement) : Result<FilterEntity> {
         val filterList = mutableListOf<String>()
         var index : Long = 0
-        var title = ""
+        var filterType = FilterType.Category
         from.asJsonObject["drinks"].asJsonArray.forEach { drinksItem ->
             drinksItem.asJsonObject.keySet().forEach {
-                filterList.add(drinksItem.asJsonObject[it].toString())
+                filterList.add(drinksItem.asJsonObject[it].asString.capitalizeWords())
                 when {
                     it.lowercase().contains("category") -> {
                         index = 0
-                        title = "Category"
+                        filterType = FilterType.Category
                     }
                     it.lowercase().contains("glass") -> {
                         index = 1
-                        title = "Glass"
+                        filterType = FilterType.Glass
                     }
                     it.lowercase().contains("alcohol") -> {
                         index = 2
-                        title = "Alcoholic"
+                        filterType = FilterType.Alcoholic
                     }
                     else -> Unit
                 }
@@ -33,7 +34,7 @@ class FilterListJsonMapper @Inject constructor() {
         }
         val result = FilterEntity(
             index = index,
-            filterTitle = title,
+            filterType = filterType,
             filterList = filterList
         )
         return Result(result)

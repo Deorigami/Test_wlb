@@ -2,7 +2,7 @@ package com.ardinata.test.wlb.core.util
 
 import android.content.Context
 import com.ardinata.test.wlb.config.constant.Config
-import com.ardinata.test.wlb.template.SortFilter
+import com.ardinata.test.wlb.organism.SortFilter
 
 object SessionManager {
     fun getSortPreference(context: Context): SortFilter.Companion.SortType {

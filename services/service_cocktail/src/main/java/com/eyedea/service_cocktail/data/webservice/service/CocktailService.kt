@@ -17,4 +17,9 @@ interface CocktailService {
     suspend fun getDrinkList(
         @Query("f") find: String
     ) : JsonElement
+
+    @GET("search.php")
+    suspend fun searchCocktailByName(
+        @Query("s") keyword: String
+    ) : JsonElement
 }

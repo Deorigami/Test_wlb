@@ -1,9 +1,7 @@
 package com.ardinata.test.wlb.di
 
 import android.content.Context
-import com.ardinata.test.wlb.core.interception.AuthorizationInterceptor
 import com.chuckerteam.chucker.api.ChuckerCollector
-
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
@@ -31,14 +29,13 @@ object NetworkModule {
                 .alwaysReadResponseBody(false)
                 .build()
         )
-        .addInterceptor(AuthorizationInterceptor())
         .build()
 
     @Singleton
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient) : Retrofit = Retrofit
         .Builder()
-        .baseUrl("https://api.rawg.io/api/")
+        .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

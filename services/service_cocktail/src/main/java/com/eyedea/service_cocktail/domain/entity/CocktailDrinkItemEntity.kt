@@ -1,9 +1,12 @@
 package com.eyedea.service_cocktail.domain.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CocktailDrinkItemEntity(
-    @SerializedName("dateModified") val dateModified: String,
+    @SerializedName("dateModified") val dateModified: String? = "",
     @SerializedName("idDrink") val idDrink: Long,
     @SerializedName("strAlcoholic") val alcoholic: String,
     @SerializedName("strCategory") val category: String,
@@ -19,9 +22,10 @@ data class CocktailDrinkItemEntity(
     @SerializedName("strTags") val tags: String? = "",
     @SerializedName("strVideo") val video: String? = "",
     val ingredientList : List<IngredientsItemData>
-){
+) : Parcelable {
+    @Parcelize
     data class IngredientsItemData(
         val ingredient: String,
         val measure: String
-    )
+    ) : Parcelable
 }

@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.ardinata.test.wlb.core.contract.RouterContract
+import com.ardinata.test.wlb.core.modal.GeneralAlertHalfModal
 
 
 abstract class BaseViewBindingFragment<VB : ViewBinding> : Fragment(), Binding {
@@ -72,6 +75,32 @@ abstract class BaseViewBindingFragment<VB : ViewBinding> : Fragment(), Binding {
             null
         }
         loadingDialog?.dismiss()
+    }
+
+    open fun showHalfModal(
+        fragmentManager: FragmentManager,
+        title : String? = null,
+        body : String? = null,
+        primaryButtonTitle : String? = null,
+        onPrimaryButtonPressed : (() -> Unit) ? = null,
+        secondaryButtonTitle : String? = null,
+        onSecondaryButtonPressed : (() -> Unit) ? = null,
+        isDismissable : Boolean = false,
+        onDialogDismissed : (() -> Unit)? = null,
+        imageResource : Any? = null
+    ){
+        val halfModal = GeneralAlertHalfModal(
+            title?:"",
+            body?:"",
+            imageResource,
+            primaryButtonTitle?:"",
+            onPrimaryButtonPressed,
+            secondaryButtonTitle ?: "",
+            onSecondaryButtonPressed,
+            isDismissable = isDismissable
+        )
+
+        lifecycleScope.launchWhenResumed { halfModal.show(fragmentManager,"") }
     }
 
 }
