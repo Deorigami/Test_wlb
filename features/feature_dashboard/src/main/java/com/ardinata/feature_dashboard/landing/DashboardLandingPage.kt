@@ -1,7 +1,6 @@
 package com.ardinata.feature_dashboard.landing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -9,7 +8,7 @@ import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
 import com.ardinata.feature_dashboard.landing.pager.DashboardPagerAdapter
-import com.ardinata.feature_dashboard.landing.pager.PagerFavGameList
+import com.ardinata.feature_dashboard.landing.pager.PagerFavDrinkList
 import com.ardinata.feature_dashboard.landing.pager.PagerGameList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
@@ -40,8 +39,13 @@ class DashboardLandingPage(
             childFragmentManager,
             lifecycle,
             PagerGameList(),
-            PagerFavGameList()
+            PagerFavDrinkList()
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.favoriteDrink.execute(Unit)
     }
 
     override fun didMount(view: View) {

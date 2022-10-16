@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class CocktailDrinkItemEntity(
     @SerializedName("dateModified") val dateModified: String? = "",
-    @SerializedName("idDrink") val idDrink: Long,
     @SerializedName("strAlcoholic") val alcoholic: String,
     @SerializedName("strCategory") val category: String,
     @SerializedName("strCreativeCommonsConfirmed") val creativeCommonsConfirmed: String,
@@ -21,11 +20,13 @@ data class CocktailDrinkItemEntity(
     @SerializedName("strInstructions") val strInstructions: String,
     @SerializedName("strTags") val tags: String? = "",
     @SerializedName("strVideo") val video: String? = "",
-    val ingredientList : List<IngredientsItemData>
-) : Parcelable {
+    val ingredientList : List<IngredientsItemData> = listOf(),
+    @SerializedName("idDrink") val drinkId: Long,
+    ) : Parcelable {
     @Parcelize
     data class IngredientsItemData(
         val ingredient: String,
-        val measure: String
+        val measure: String,
+        val id: Long? = null
     ) : Parcelable
 }

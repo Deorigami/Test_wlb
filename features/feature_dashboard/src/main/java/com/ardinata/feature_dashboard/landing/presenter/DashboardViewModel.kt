@@ -11,6 +11,7 @@ import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
 import com.eyedea.service_cocktail.domain.entity.FilterEntity
 import com.eyedea.service_cocktail.domain.resource.FilterType
 import com.eyedea.service_cocktail.domain.usecase.*
+import com.eyedea.service_cocktail.domain.usecase.db.GetFavoriteDrinksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class DashboardViewModel @Inject constructor(
     alcoholicFilterUseCase: GetAlcoholicFilterUseCase,
     getCocktailListUseCase: GetCocktailListUseCase,
     searchCocktailByNameUseCase: SearchCocktailByNameUseCase,
+    getFavoriteDrinksUseCase: GetFavoriteDrinksUseCase
 ) : BaseViewModel() {
     override fun getKillableStatefulLiveData(): List<StatefulLiveData<*, *>> {
         return listOf(categoriesFilter, cocktailList)
@@ -54,6 +56,11 @@ class DashboardViewModel @Inject constructor(
         viewModelScope
     )
 
+    val favoriteDrink = StatefulLiveData(
+        getFavoriteDrinksUseCase,
+        viewModelScope
+    )
+
     val categoriesSelectedFilter = NonNullMutableLiveData(listOf<String>())
     val glassesSelectedFilter = NonNullMutableLiveData(listOf<String>())
     val alcoholicSelectedFilter = NonNullMutableLiveData(listOf<String>())
@@ -71,7 +78,7 @@ class DashboardViewModel @Inject constructor(
                 }
             }
 
-            value = newValue.distinctBy { it.idDrink }
+            value = newValue.distinctBy { it.drinkId }
         }
 
         addSource(cocktailList.onSuccess) { update() }

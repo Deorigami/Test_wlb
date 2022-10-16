@@ -31,6 +31,7 @@ fun ImageView.customSetImage(
                         .resize(1200, 0)
                         .onlyScaleDown()
                         .setMemoryPolicy(true)
+                        .noFade()
                         .into(
                             this,
                             object : Callback {

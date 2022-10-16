@@ -2,16 +2,18 @@ package com.ardinata.feature_dashboard.landing.pager
 
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageFavouriteGameListBinding
+import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PagerFavGameList(
+class PagerFavDrinkList(
     override val layout: Int = R.layout.page_favourite_game_list
 ) : BaseViewBindingFragment<PageFavouriteGameListBinding>(){
 
@@ -31,7 +33,18 @@ class PagerFavGameList(
 
     private fun setObserver() {
         viewModel.run {
-
+            favoriteDrink.listen(
+                viewLifecycleOwner,
+                onSuccess = { list ->
+                    binding?.cardGameList?.apply {
+                        this.items = CocktailDrinkEntityMapper().invoke(list)
+                        onCardPressed = { idx ->
+                            val drink = list.getOrNull(idx)
+                            drink?.let { router.navigateToGameDetail(requireContext(), it) }
+                        }
+                    }
+                }
+            )
         }
     }
 }

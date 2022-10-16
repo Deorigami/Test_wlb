@@ -1,6 +1,8 @@
 package com.eyedea.service_cocktail.internal
 
+import com.eyedea.service_cocktail.data.local.repository.CocktailDBRepositoryImpl
 import com.eyedea.service_cocktail.data.webservice.repository.CocktailRepositoryImpl
+import com.eyedea.service_cocktail.domain.repository.CocktailDBRepository
 import com.eyedea.service_cocktail.domain.repository.CocktailRepository
 import dagger.Binds
 import dagger.Module
@@ -12,4 +14,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun bindsRepository(repo: CocktailRepositoryImpl) : CocktailRepository
+    @Binds
+    abstract fun bindsDBRepository(repo: CocktailDBRepositoryImpl) : CocktailDBRepository
 }

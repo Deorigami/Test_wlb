@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerGameListBinding
+import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.modal.FilterModal
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
@@ -47,6 +48,7 @@ class PagerGameList(
                 viewLifecycleOwner,
                 onStart = { binding?.githubUserCards?.onFinishScrolling = {} },
                 onSuccess = { shownListDataSource.value = FilteredListDataSource.GENERAL },
+                onError = { showGetGeneralListErrorModal() },
                 onComplete = this@PagerGameList::closeLoading
             )
             searchCocktail.listen(
@@ -97,15 +99,7 @@ class PagerGameList(
 
     private fun setCardList(list: List<CocktailDrinkItemEntity>) {
         binding?.githubUserCards?.apply {
-            this.items = list.map {
-                CardItemView.Data(
-                    imagePoster = "${it.drinkThumb}/preview",
-                    title = it.drink,
-                    category = it.category,
-                    glass = it.glass,
-                    alcohol = it.alcoholic,
-                )
-            }.toMutableList()
+            this.items = CocktailDrinkEntityMapper().invoke(list)
             onCardPressed = {
                 val drink = list.getOrNull(it)
                 drink?.let {
@@ -116,6 +110,16 @@ class PagerGameList(
                 viewModel.getPaginatedCocktailList()
             }
         }
+    }
+
+    private fun showGetGeneralListErrorModal(){
+        showHalfModal(
+            childFragmentManager,
+            "Sesuatu yang terjadi",
+            "Terjadi kesalahan pada server",
+            primaryButtonTitle = "Ulangi",
+            onPrimaryButtonPressed = { viewModel.getPaginatedCocktailList() }
+        )
     }
 
 

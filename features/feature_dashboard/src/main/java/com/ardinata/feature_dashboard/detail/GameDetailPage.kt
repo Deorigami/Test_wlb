@@ -1,5 +1,6 @@
 package com.ardinata.feature_dashboard.detail
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.ardinata.feature_dashboard.R
@@ -31,7 +32,8 @@ class GameDetailPage(
         binding?.simpleHeader?.apply {
             onBackPressed = { activity?.onBackPressed() }
             onFavButtonChangeListener = { isFav ->
-
+                if (isFav) getDrink()?.let { viewModel.insertFavDrink.execute(it) }
+                else getDrink()?.let { viewModel.deleteFavDrinks.execute(it.drinkId) }
             }
         }
         getDrink()?.let {
@@ -44,7 +46,19 @@ class GameDetailPage(
 
     private fun setObserver() {
         viewModel.run {
-
+            insertFavDrink.listen(viewLifecycleOwner)
+            favDrinks.listen(
+                viewLifecycleOwner,
+                onSuccess = {
+                    getDrink()?.let { drink -> binding?.simpleHeader?.isFav = it.map { it.drinkId }.contains(drink.drinkId) }
+                }
+            )
+            deleteFavDrinks.listen(
+                viewLifecycleOwner,
+                onSuccess = {
+                    Log.d("ANGGATAG", "$it")
+                }
+            )
         }
     }
 
