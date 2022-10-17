@@ -7,11 +7,11 @@ import com.ardinata.feature_dashboard.landing.pager.PagerGameList.Companion.Filt
 import com.ardinata.test.wlb.core.base.BaseViewModel
 import com.ardinata.test.wlb.core.extension.NonNullMutableLiveData
 import com.ardinata.test.wlb.core.extension.StatefulLiveData
-import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
-import com.eyedea.service_cocktail.domain.entity.FilterEntity
-import com.eyedea.service_cocktail.domain.resource.FilterType
-import com.eyedea.service_cocktail.domain.usecase.*
-import com.eyedea.service_cocktail.domain.usecase.db.GetFavoriteDrinksUseCase
+import com.ardinata.service_cocktail.domain.entity.CocktailDrinkItemEntity
+import com.ardinata.service_cocktail.domain.entity.FilterEntity
+import com.ardinata.service_cocktail.domain.resource.FilterType
+import com.ardinata.service_cocktail.domain.usecase.*
+import com.ardinata.service_cocktail.domain.usecase.db.GetFavoriteDrinksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

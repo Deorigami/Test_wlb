@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.InputType
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -164,12 +165,9 @@ class BasicTextField(
             }
             setOnFocusChangeListener { _, b ->
                 when {
-                    b && (this.text?.isNotEmpty() == true) && (!isError) -> setLinerColor =
-                        R.color.brightSkyBlue
-                    !b && (this.text?.isNotEmpty() == true) && (!isError) -> setLinerColor =
-                        R.color.cloudyBlue
-                    !b && (this.text.isNullOrEmpty()) && !isError -> setLinerColor =
-                        R.color.cloudyBlue
+                    b && (this.text?.isNotEmpty() == true) && (!isError) -> setLinerColor = R.color.brightSkyBlue
+                    !b && (this.text?.isNotEmpty() == true) && (!isError) -> setLinerColor = R.color.cloudyBlue
+                    !b && (this.text.isNullOrEmpty()) && !isError -> setLinerColor = R.color.cloudyBlue
                     b && !isError -> setLinerColor = R.color.brightSkyBlue
                 }
 
@@ -213,6 +211,7 @@ class BasicTextField(
                 binding.linerView.background =
                     ColorDrawable(ContextCompat.getColor(context, setLinerColor!!))
             } catch (e: Exception) {
+                Log.d(TAG, "${e.message}")
             }
         }
     }

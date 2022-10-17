@@ -1,7 +1,7 @@
 package com.ardinata.feature_dashboard.landing.mapper
 
 import com.ardinata.test.wlb.organism.CardItemView
-import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
+import com.ardinata.service_cocktail.domain.entity.CocktailDrinkItemEntity
 
 class CocktailDrinkEntityMapper {
     operator fun invoke(from : List<CocktailDrinkItemEntity>) : MutableList<CardItemView.Data> {

@@ -1,5 +1,6 @@
 package com.ardinata.feature_dashboard.landing.pager
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,6 +37,7 @@ class PagerFavDrinkList(
             favoriteDrink.listen(
                 viewLifecycleOwner,
                 onSuccess = { list ->
+                    Log.d("ANGGATAG", "$list")
                     binding?.cardGameList?.apply {
                         this.items = CocktailDrinkEntityMapper().invoke(list)
                         onCardPressed = { idx ->

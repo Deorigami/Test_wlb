@@ -1,8 +1,6 @@
 package com.ardinata.test.wlb.template.group.adapter
 
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.ardinata.test.wlb.organism.CardItemView
 

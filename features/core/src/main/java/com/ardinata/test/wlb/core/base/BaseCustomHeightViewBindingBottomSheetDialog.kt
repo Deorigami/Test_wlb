@@ -117,7 +117,7 @@ abstract class BaseCustomHeightViewBindingBottomSheetDialog<VB : ViewBinding> : 
         binding?.bindView()
     }
 
-    open fun VB.bindView() {}
+    open fun VB.bindView() = Unit
 
     open fun closeLoading(){
         val loadingDialog : LoadingDialog? = try {

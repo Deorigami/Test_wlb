@@ -8,7 +8,7 @@ import com.ardinata.feature_dashboard.databinding.PageGameDetailBinding
 import com.ardinata.feature_dashboard.detail.presenter.GameDetailViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import com.ardinata.test.wlb.util.customSetImage
-import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
+import com.ardinata.service_cocktail.domain.entity.CocktailDrinkItemEntity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

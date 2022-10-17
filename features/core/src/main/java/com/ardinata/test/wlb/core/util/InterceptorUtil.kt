@@ -42,7 +42,7 @@ object InterceptorUtil {
             if (response != null) {
                 val source = response.source()
                 source.request(Long.MAX_VALUE)
-                var buffer = source.buffer()
+                val buffer = source.buffer()
                 val contentLength = response.contentLength()
                 val contentType = response.contentType()
                 val charset: Charset = contentType?.charset(StandardCharsets.UTF_8) ?: StandardCharsets.UTF_8

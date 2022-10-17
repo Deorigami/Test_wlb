@@ -3,7 +3,9 @@ plugins {
     kotlin("android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    id("org.sonarqube")
+}
+apply {
+    from("$rootDir/jacoco.gradle")
 }
 
 android {
@@ -80,17 +82,4 @@ dependencies {
     Firebase.Deps.forEach { dep ->
         implementation(platform(dep))
     }
-}
-
-
-sonarqube.properties {
-    property("sonar.projectName", "com.ardinata.test")
-    property("sonar.projectKey", "com.ardinata.test")
-    property("sonar.host.url", "http://localhost:8585")
-    property("sonar.language", "kotlin")
-    property("sonar.sources", "src/main/java/")
-    property("sonar.binaries", "build")
-    property("sonar.sourceEncoding", "UTF-8")
-    property("sonar.login", "admin")
-    property("sonar.password", "admin")
 }

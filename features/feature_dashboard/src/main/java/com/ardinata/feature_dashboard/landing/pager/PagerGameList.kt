@@ -11,10 +11,8 @@ import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.modal.FilterModal
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.core.extension.hideKeyboard
 import com.ardinata.test.wlb.core.extension.textChanges
-import com.ardinata.test.wlb.organism.CardItemView
-import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
+import com.ardinata.service_cocktail.domain.entity.CocktailDrinkItemEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce

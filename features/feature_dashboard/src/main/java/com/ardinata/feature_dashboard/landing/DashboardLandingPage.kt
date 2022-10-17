@@ -118,7 +118,7 @@ class DashboardLandingPage(
                         title = "Favorite",
                         shouldTintActiveIcon = false
                     )
-                    else -> {}
+                    else -> { return@apply }
                 }
             }
         }.attach()
@@ -136,7 +136,7 @@ class DashboardLandingPage(
                 }
 
                 override fun onTabReselected(tab: TabLayout.Tab?) {
-
+                    // do nothing
                 }
             })
         }

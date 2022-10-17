@@ -1,8 +1,6 @@
 package com.ardinata.feature_dashboard.landing
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import com.ardinata.feature_dashboard.R
 import com.ardinata.test.wlb.core.base.BaseActivity
 

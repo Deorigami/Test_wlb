@@ -2,7 +2,6 @@ package com.ardinata.test.wlb.molecule
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.ardinata.component.databinding.GroupBaseLayoutBinding
@@ -55,7 +54,7 @@ class FilterGroup(
 
 
     private fun refreshView() {
-
+        // refresh view
     }
 
     private fun refreshAdapter(idx: Int){

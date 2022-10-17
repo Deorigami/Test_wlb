@@ -6,14 +6,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.ardinata.core.R
 import com.ardinata.test.wlb.core.extension.hideKeyboard
 import com.ardinata.test.wlb.core.util.LocaleUtil
-import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -66,11 +62,9 @@ abstract class BaseActivity(val layout: Int) : AppCompatActivity(layout) {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if (currentFocus != null && ev?.action == MotionEvent.ACTION_UP) {
-            if (touchEvent == null){
-                hideKeyboard()
-                currentFocus?.clearFocus()
-            }
+        if (currentFocus != null && ev?.action == MotionEvent.ACTION_UP && touchEvent == null) {
+            hideKeyboard()
+            currentFocus?.clearFocus()
         }
         touchEvent = if (ev?.action == MotionEvent.ACTION_MOVE) MotionEvent.ACTION_MOVE else null
         return super.dispatchTouchEvent(ev)

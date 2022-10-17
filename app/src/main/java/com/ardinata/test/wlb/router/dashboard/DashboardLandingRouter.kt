@@ -8,7 +8,7 @@ import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.detail.GameDetailActivity
 import com.ardinata.feature_dashboard.detail.GameDetailPage
 import com.ardinata.feature_dashboard.landing.DashboardLandingActivity
-import com.eyedea.service_cocktail.domain.entity.CocktailDrinkItemEntity
+import com.ardinata.service_cocktail.domain.entity.CocktailDrinkItemEntity
 import javax.inject.Inject
 
 class DashboardLandingRouter @Inject constructor() : BaseRouter(), DashboardLandingContract.Router {

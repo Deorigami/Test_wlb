@@ -54,7 +54,7 @@ fun ImageView.customSetImage(
             try {
                 this.setImageDrawable(ContextCompat.getDrawable(context, imageSource))
             } catch (e: Exception) {
-
+                println(e.localizedMessage)
             }
         }
         is Drawable -> {
