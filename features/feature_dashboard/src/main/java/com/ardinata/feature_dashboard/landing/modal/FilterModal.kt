@@ -64,7 +64,7 @@ class FilterModal(
                 }
             }
             filteredCocktailList.observe(viewLifecycleOwner){
-                if (shownListDataSource.value == PagerDrinkList.Companion.FilteredListDataSource.GENERAL) binding?.button?.text = "${it.size} Ditemukan"
+                binding?.button?.text = "${it.size} Ditemukan"
             }
         }
     }
