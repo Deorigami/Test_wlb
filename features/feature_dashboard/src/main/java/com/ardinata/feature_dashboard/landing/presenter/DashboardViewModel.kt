@@ -2,8 +2,8 @@ package com.ardinata.feature_dashboard.landing.presenter
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.ardinata.feature_dashboard.landing.pager.PagerGameList.Companion.FilteredListDataSource.GENERAL
-import com.ardinata.feature_dashboard.landing.pager.PagerGameList.Companion.FilteredListDataSource.SEARCH
+import com.ardinata.feature_dashboard.landing.pager.PagerDrinkList.Companion.FilteredListDataSource.GENERAL
+import com.ardinata.feature_dashboard.landing.pager.PagerDrinkList.Companion.FilteredListDataSource.SEARCH
 import com.ardinata.test.wlb.core.base.BaseViewModel
 import com.ardinata.test.wlb.core.extension.NonNullMutableLiveData
 import com.ardinata.test.wlb.core.extension.StatefulLiveData

@@ -55,6 +55,7 @@ internal class CocktailDBRepositoryImplTest {
             CocktailDrinkItemEntity.IngredientsItemData(
                 "Blended whiskey",
                 "1 1/2 oz",
+                "https://www.thecocktaildb.com/images/ingredients/Blended whiskey.png",
                 0
         )) ,
         drinkId = 11020 ,

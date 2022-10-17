@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.ModalFilterBinding
-import com.ardinata.feature_dashboard.landing.pager.PagerGameList
+import com.ardinata.feature_dashboard.landing.pager.PagerDrinkList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.atom.TextItem
 import com.ardinata.test.wlb.core.base.BaseCustomHeightViewBindingBottomSheetDialog
@@ -64,7 +64,7 @@ class FilterModal(
                 }
             }
             filteredCocktailList.observe(viewLifecycleOwner){
-                if (shownListDataSource.value == PagerGameList.Companion.FilteredListDataSource.GENERAL) binding?.button?.text = "${it.size} Ditemukan"
+                if (shownListDataSource.value == PagerDrinkList.Companion.FilteredListDataSource.GENERAL) binding?.button?.text = "${it.size} Ditemukan"
             }
         }
     }

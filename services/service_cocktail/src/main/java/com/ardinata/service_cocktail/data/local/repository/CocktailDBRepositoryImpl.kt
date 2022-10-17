@@ -23,6 +23,7 @@ class CocktailDBRepositoryImpl @Inject constructor(
             val ingredientId = dao.insertIngredient(CocktailDrinkItemDBEntity.IngredientsItemDBData(
                 it.ingredient,
                 it.measure,
+                it.image
             ))
             dao.insertCocktailIngredientMap(CocktailAndIngredientRelationEntity(cocktailId, ingredientId))
         }

@@ -25,6 +25,7 @@ class CocktailWithIngredientListMapper @Inject constructor() {
             ingredientList = ingredientList.ingredientList.map { CocktailDrinkItemEntity.IngredientsItemData(
                 it.ingredient,
                 it.measure,
+                it.image,
                 it.id
             ) },
             drinkId = ingredientList.cocktailDrinkItemEntity.drinkId,

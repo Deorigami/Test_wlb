@@ -6,7 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
-import com.ardinata.feature_dashboard.databinding.PagerGameListBinding
+import com.ardinata.feature_dashboard.databinding.PagerDrinkListBinding
 import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.modal.FilterModal
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
@@ -21,16 +21,16 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PagerGameList(
-    override val layout: Int = R.layout.pager_game_list
-) : BaseViewBindingFragment<PagerGameListBinding>() {
+class PagerDrinkList(
+    override val layout: Int = R.layout.pager_drink_list
+) : BaseViewBindingFragment<PagerDrinkListBinding>() {
 
     private val viewModel by activityViewModels<DashboardViewModel>()
     @Inject
     override lateinit var router: DashboardLandingContract.Router
 
     override fun initBinding(view: View) {
-        binding = PagerGameListBinding.bind(view)
+        binding = PagerDrinkListBinding.bind(view)
     }
 
     override fun didMount(view: View) {
@@ -47,7 +47,7 @@ class PagerGameList(
                 onStart = { binding?.githubUserCards?.onFinishScrolling = {} },
                 onSuccess = { shownListDataSource.value = FilteredListDataSource.GENERAL },
                 onError = { showGetGeneralListErrorModal() },
-                onComplete = this@PagerGameList::closeLoading
+                onComplete = this@PagerDrinkList::closeLoading
             )
             searchCocktail.listen(
                 viewLifecycleOwner,
@@ -63,7 +63,7 @@ class PagerGameList(
                     )
                 }
             )
-            filteredCocktailList.observe(viewLifecycleOwner, this@PagerGameList::handleFilteredList)
+            filteredCocktailList.observe(viewLifecycleOwner, this@PagerDrinkList::handleFilteredList)
         }
     }
 

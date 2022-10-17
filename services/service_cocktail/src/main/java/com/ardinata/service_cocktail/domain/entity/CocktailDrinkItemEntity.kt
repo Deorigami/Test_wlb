@@ -28,6 +28,7 @@ data class CocktailDrinkItemEntity(
     data class IngredientsItemData(
         val ingredient: String,
         val measure: String,
+        val image: String,
         val id: Long? = null
     ) : Parcelable
 
@@ -51,7 +52,7 @@ data class CocktailDrinkItemEntity(
         )
 
         fun IngredientsItemData.toIngredientDataDB() = CocktailDrinkItemDBEntity.IngredientsItemDBData(
-            ingredient, measure, id ?: 0
+            ingredient, measure,  image,id ?: 0
         )
     }
 }

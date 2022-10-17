@@ -10,7 +10,7 @@
         android:id="@+id/header"
         app:hasFavButton="false"
         app:hasBackButton="false"
-        app:title="Favorite Game"
+        app:title="@string/drinks_detail_page_navbar_title"
         />
     <com.ardinata.test.wlb.template.group.CardGroup
         android:layout_width="match_parent"

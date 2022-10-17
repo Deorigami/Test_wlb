@@ -3,10 +3,9 @@ package com.ardinata.feature_dashboard.landing.pager
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
-import com.ardinata.feature_dashboard.databinding.PageFavouriteGameListBinding
+import com.ardinata.feature_dashboard.databinding.PageFavouriteDrinkListBinding
 import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
@@ -15,8 +14,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PagerFavDrinkList(
-    override val layout: Int = R.layout.page_favourite_game_list
-) : BaseViewBindingFragment<PageFavouriteGameListBinding>(){
+    override val layout: Int = R.layout.page_favourite_drink_list
+) : BaseViewBindingFragment<PageFavouriteDrinkListBinding>(){
 
     private val viewModel : DashboardViewModel by activityViewModels()
 
@@ -24,7 +23,7 @@ class PagerFavDrinkList(
     override lateinit var router: DashboardLandingContract.Router
 
     override fun initBinding(view: View) {
-        binding = PageFavouriteGameListBinding.bind(view)
+        binding = PageFavouriteDrinkListBinding.bind(view)
     }
 
     override fun didMount(view: View) {

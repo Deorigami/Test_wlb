@@ -26,6 +26,7 @@ data class CocktailDrinkItemDBEntity(
     data class IngredientsItemDBData(
         @ColumnInfo(name = "ingredient") val ingredient: String,
         @ColumnInfo(name = "measure") val measure: String,
-        @ColumnInfo(name = "ingredientId") @PrimaryKey(autoGenerate = true) val id: Long = 0
+        @ColumnInfo(name = "image") val image: String,
+        @ColumnInfo(name = "ingredientId") @PrimaryKey(autoGenerate = true) val id: Long = 0,
     )
 }

@@ -3,4 +3,5 @@
     <string name="dashboard_test_language">This Text is in English</string>
     <string name="page_title" translatable="false">Recipe For You</string>
     <string name="page_empty_state_title" translatable="false">Minuman Tidak Ditemukan Berdasarkan Filter</string>
+    <string name="drinks_detail_page_navbar_title" translatable="false">Favorite Drinks</string>
 </resources>

@@ -9,7 +9,7 @@ import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
 import com.ardinata.feature_dashboard.landing.pager.DashboardPagerAdapter
 import com.ardinata.feature_dashboard.landing.pager.PagerFavDrinkList
-import com.ardinata.feature_dashboard.landing.pager.PagerGameList
+import com.ardinata.feature_dashboard.landing.pager.PagerDrinkList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import com.ardinata.test.wlb.template.TabsItem
@@ -38,7 +38,7 @@ class DashboardLandingPage(
         adapter = DashboardPagerAdapter(
             childFragmentManager,
             lifecycle,
-            PagerGameList(),
+            PagerDrinkList(),
             PagerFavDrinkList()
         )
     }

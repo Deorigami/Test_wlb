@@ -17,7 +17,7 @@ class CocktailIngredientsJsonMapper @Inject constructor() {
                     val ingredient = try { jsonObj[s].asString } catch (e:Exception) { "" }
                     val measure = try { jsonObj[key[index + loop]].asString } catch (e: Exception) { "" }
                     if (index <= loop && ingredient.isNotEmpty() && measure.isNotEmpty()){
-                        ingredientList.add(IngredientsItemData(ingredient, measure))
+                        ingredientList.add(IngredientsItemData(ingredient, measure, image = "https://www.thecocktaildb.com/images/ingredients/$ingredient.png"))
                     }
                 }
             }
