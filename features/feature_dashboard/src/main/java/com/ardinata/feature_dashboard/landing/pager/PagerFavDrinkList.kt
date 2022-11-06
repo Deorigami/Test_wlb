@@ -1,12 +1,10 @@
 package com.ardinata.feature_dashboard.landing.pager
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageFavouriteDrinkListBinding
-import com.ardinata.feature_dashboard.landing.mapper.CocktailDrinkEntityMapper
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,19 +31,7 @@ class PagerFavDrinkList(
 
     private fun setObserver() {
         viewModel.run {
-            favoriteDrink.listen(
-                viewLifecycleOwner,
-                onSuccess = { list ->
-                    Log.d("ANGGATAG", "$list")
-                    binding?.cardGameList?.apply {
-                        this.items = CocktailDrinkEntityMapper().invoke(list)
-                        onCardPressed = { idx ->
-                            val drink = list.getOrNull(idx)
-                            drink?.let { router.navigateToGameDetail(requireContext(), it) }
-                        }
-                    }
-                }
-            )
+
         }
     }
 }

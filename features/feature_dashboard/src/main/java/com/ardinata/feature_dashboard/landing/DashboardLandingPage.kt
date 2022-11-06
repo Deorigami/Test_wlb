@@ -2,6 +2,7 @@ package com.ardinata.feature_dashboard.landing
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
@@ -45,7 +46,6 @@ class DashboardLandingPage(
 
     override fun onResume() {
         super.onResume()
-        viewModel.favoriteDrink.execute(Unit)
     }
 
     override fun didMount(view: View) {
@@ -53,29 +53,14 @@ class DashboardLandingPage(
         setupPager()
         setupListener()
         viewModel.run {
-            categoriesFilter.listen(viewLifecycleOwner)
-            glassesFilter.listen(viewLifecycleOwner)
-            alcoholicFilter.listen(viewLifecycleOwner)
-            cocktailList.listen(
-                viewLifecycleOwner,
-                onSuccess = {
 
-                }
-            )
-            searchCocktail.listen(
-                viewLifecycleOwner,
-                onSuccess = {
-                }
-            )
-            filterData.observe(viewLifecycleOwner){
-
-            }
         }
     }
 
     private fun setupPager() {
         binding?.viewPager?.apply {
             adapter = this@DashboardLandingPage.adapter
+            isUserInputEnabled = false
         }
         TabLayoutMediator(
             binding?.tabs ?: return,

@@ -59,9 +59,6 @@ class CardItemView(
         binding.apply {
             leftImage.customSetImage(imagePoster)
             title.text = this@CardItemView.title
-            glass.text = this@CardItemView.glass
-            category.text = this@CardItemView.category
-            alcohol.text = this@CardItemView.alcohol
         }
     }
 }

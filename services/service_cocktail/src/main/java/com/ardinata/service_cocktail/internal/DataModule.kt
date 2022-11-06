@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.room.Room
 import com.ardinata.service_cocktail.data.local.CocktailDB
 import com.ardinata.service_cocktail.data.local.dao.CocktailDao
-import com.ardinata.service_cocktail.data.webservice.service.CocktailService
+import com.ardinata.service_cocktail.data.webservice.service.MovieDBService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 object DataModule {
     @Provides
     @Singleton
-    fun profideService(retrofit: Retrofit) : CocktailService = retrofit.create(CocktailService::class.java)
+    fun profideService(retrofit: Retrofit) : MovieDBService = retrofit.create(MovieDBService::class.java)
 
     @Provides
     @Singleton

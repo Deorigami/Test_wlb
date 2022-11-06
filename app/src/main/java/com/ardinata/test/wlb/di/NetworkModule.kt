@@ -1,6 +1,7 @@
 package com.ardinata.test.wlb.di
 
 import android.content.Context
+import com.ardinata.test.wlb.core.interceptor.ApiKeyInterceptor
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
@@ -29,13 +30,14 @@ object NetworkModule {
                 .alwaysReadResponseBody(false)
                 .build()
         )
+        .addInterceptor(ApiKeyInterceptor())
         .build()
 
     @Singleton
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient) : Retrofit = Retrofit
         .Builder()
-        .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
+        .baseUrl("https://api.themoviedb.org/3/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

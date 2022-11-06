@@ -14,58 +14,21 @@
         app:title="@string/page_title"
         />
 
-    <com.ardinata.test.wlb.organism.BasicTextField
-        android:id="@+id/textFieldView"
+    <com.ardinata.test.wlb.organism.CategorySelector
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/header"
-        android:layout_marginHorizontal="16dp"
-        app:hint="Search ..."
-        android:layout_marginTop="16dp"
-        />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyState"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldView">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/page_empty_state_title"
-            android:textAppearance="@style/TextAppearance.H3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="24dp"
-            android:gravity="center"
-            android:id="@+id/emptyStateTitle"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            app:layout_constraintTop_toBottomOf="@id/emptyStateTitle"
-            android:src="@drawable/ic_search"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingVertical="24dp"
-            android:layout_marginHorizontal="24dp"
-            android:id="@+id/emptyStateImage"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.ardinata.test.wlb.template.group.CardGroup
-        android:id="@+id/githubUserCards"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingVertical="16dp"
-        android:paddingEnd="24dp"
-        android:paddingStart="14dp"
+        android:id="@+id/categorySelector"
+        android:paddingHorizontal="24dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/categorySelector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldView" />
+        android:id="@+id/viewPager"
+        android:layout_height="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
