@@ -55,7 +55,7 @@ dependencies {
     api(project(":features:core"))
     api(project(":features:feature_util"))
     debugImplementation("com.amitshekhar.android:debug-db:1.0.6")
-
+    implementation("com.localebro:okhttpprofiler:1.0.8")
     TestCore.Deps.forEach { dep ->
         if (dep.contains("androidx")) {
             androidTestImplementation(dep)

@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class MovieListVPAdapter(
     fm: FragmentManager,
     ls: Lifecycle,
-    private vararg val  fragments: Fragment
+    private val fragments: List<Fragment>
 ) : FragmentStateAdapter(fm, ls) {
     override fun getItemCount(): Int = fragments.size
 

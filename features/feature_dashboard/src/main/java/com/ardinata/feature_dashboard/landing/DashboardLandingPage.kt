@@ -2,7 +2,6 @@ package com.ardinata.feature_dashboard.landing
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
@@ -10,7 +9,7 @@ import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
 import com.ardinata.feature_dashboard.landing.pager.DashboardPagerAdapter
 import com.ardinata.feature_dashboard.landing.pager.PagerFavDrinkList
-import com.ardinata.feature_dashboard.landing.pager.PagerDrinkList
+import com.ardinata.feature_dashboard.landing.pager.MovieList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import com.ardinata.test.wlb.template.TabsItem
@@ -39,7 +38,8 @@ class DashboardLandingPage(
         adapter = DashboardPagerAdapter(
             childFragmentManager,
             lifecycle,
-            PagerDrinkList(),
+            MovieList(MovieList.Companion.PageMode.MOVIE),
+            MovieList(MovieList.Companion.PageMode.TV),
             PagerFavDrinkList()
         )
     }
@@ -71,22 +71,38 @@ class DashboardLandingPage(
                     0 -> data = TabsItem.Data(
                         activeIcon = ContextCompat.getDrawable(
                             requireContext(),
-                            R.drawable.ic_home
+                            R.drawable.ic_movie_filled
                         ),
                         inactiveIcon = ContextCompat.getDrawable(
                             requireContext(),
-                            R.drawable.ic_outline_home
+                            R.drawable.ic_movie
                         ),
                         activeColor = ContextCompat.getColor(requireContext(), R.color.brightSkyBlue),
                         inactiveColor = ContextCompat.getColor(
                             requireContext(),
                             R.color.battleshipGrey
                         ),
-                        title = "Home"
+                        title = "Movie",
                     ).apply {
                         isActive = true
                     }
                     1 -> data = TabsItem.Data(
+                        activeIcon = ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_tv_filled
+                        ),
+                        inactiveIcon = ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_tv
+                        ),
+                        activeColor = ContextCompat.getColor(requireContext(), R.color.brightSkyBlue),
+                        inactiveColor = ContextCompat.getColor(
+                            requireContext(),
+                            R.color.battleshipGrey
+                        ),
+                        title = "Series"
+                    )
+                    2 -> data = TabsItem.Data(
                         activeIcon = ContextCompat.getDrawable(
                             requireContext(),
                             R.drawable.ic_heart_filled
@@ -101,7 +117,6 @@ class DashboardLandingPage(
                             R.color.battleshipGrey
                         ),
                         title = "Favorite",
-                        shouldTintActiveIcon = false
                     )
                     else -> { return@apply }
                 }

@@ -6,13 +6,13 @@ import com.ardinata.test.wlb.core.base.BaseUseCase
 import com.ardinata.test.wlb.core.model.Result
 import javax.inject.Inject
 
-class GetTopRatedTVUseCase @Inject constructor(
+class GetAiringTodayTVUseCase @Inject constructor(
     private val repo: MovieDBServiceRepository
 ) : BaseUseCase<String, TVListEntity>(){
     override val default: TVListEntity
         get() = TVListEntity.DEFAULT
 
     override suspend fun build(param: String): Result<TVListEntity> {
-        return repo.getTopRatedTV(param)
+        return repo.getAiringTodayTV(param)
     }
 }

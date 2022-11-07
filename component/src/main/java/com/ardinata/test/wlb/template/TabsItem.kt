@@ -20,7 +20,7 @@ class TabsItem(
         val activeColor: Int? = null,
         val inactiveColor: Int? = null,
         val title: String,
-        val shouldTintActiveIcon : Boolean = true
+        val shouldTintActiveIcon : Boolean = false
     )
 
     var data : Data? = null

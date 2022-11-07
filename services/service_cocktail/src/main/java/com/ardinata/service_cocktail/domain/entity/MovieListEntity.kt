@@ -1,5 +1,5 @@
 package com.ardinata.service_cocktail.domain.entity
-import com.ardinata.service_cocktail.domain.resource.MOVIESECTION
+import com.ardinata.service_cocktail.domain.resource.MovieDBSection
 
 
 data class MovieListEntity(
@@ -7,7 +7,7 @@ data class MovieListEntity(
     val totalPages: Int,
     val results: List<MovieListItemEntity>,
     val totalResults: Int,
-    val section: MOVIESECTION
+    val section: MovieDBSection
 ) {
     companion object {
         val DEFAULT = MovieListEntity(
@@ -15,7 +15,7 @@ data class MovieListEntity(
             totalPages = 0,
             results = emptyList(),
             totalResults = 0,
-            section = MOVIESECTION.NOW_PLAYING_MOVIE
+            section = MovieDBSection.NOW_PLAYING_MOVIE
         )
     }
 }

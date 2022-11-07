@@ -1,30 +1,21 @@
 package com.ardinata.feature_dashboard.landing.pager
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerDrinkListBinding
-import com.ardinata.feature_dashboard.landing.modal.FilterModal
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
-import com.ardinata.service_cocktail.domain.resource.MOVIESECTION
+import com.ardinata.service_cocktail.domain.resource.MovieDBSection
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.core.extension.textChanges
-import com.ardinata.test.wlb.organism.CardItemView
 import com.ardinata.test.wlb.organism.TabsCustomItem
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PagerDrinkList(
+class MovieList(
+    private val pageMode: PageMode,
     override val layout: Int = R.layout.pager_drink_list
 ) : BaseViewBindingFragment<PagerDrinkListBinding>() {
 
@@ -34,18 +25,25 @@ class PagerDrinkList(
     override lateinit var router: DashboardLandingContract.Router
 
     lateinit var adapter : MovieListVPAdapter
+    lateinit var sections : List<MovieDBSection>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val movieFragments = MOVIESECTION.values().filter { it.name.lowercase().contains("movie") }.map { data ->
-            MovieListPager(data)
-        }.toMutableList()
+        sections = MovieDBSection
+            .values()
+            .filter {
+                it.name
+                    .lowercase()
+                    .contains(if (pageMode == PageMode.MOVIE) "movie" else "tv")
+            }
+        val sectionFragments = sections.map { data ->
+            MovieListPager.createInstance(data)
+        }
         adapter = MovieListVPAdapter(
             childFragmentManager,
             lifecycle,
-            *movieFragments.toTypedArray()
+            sectionFragments
         )
-
     }
 
     override fun initBinding(view: View) {
@@ -56,9 +54,9 @@ class PagerDrinkList(
         super.didMount(view)
         initObserver()
         binding?.categorySelector?.apply {
-            items = MOVIESECTION.values().filter { it.name.lowercase().contains("movie") }.mapIndexed { index, data ->
+            items = sections.mapIndexed { index, moviesection ->
                 TabsCustomItem.Data(
-                    data.text,
+                    moviesection.text,
                     index == 0
                 )
             }.toMutableList()
@@ -77,7 +75,7 @@ class PagerDrinkList(
 
     private fun initView() {
         binding?.viewPager?.apply {
-            adapter = this@PagerDrinkList.adapter
+            adapter = this@MovieList.adapter
             currentItem = 0
             isUserInputEnabled = false
         }
@@ -85,5 +83,9 @@ class PagerDrinkList(
 
     private fun initObserver() {
 
+    }
+
+    companion object {
+        enum class PageMode{ MOVIE, TV }
     }
 }
