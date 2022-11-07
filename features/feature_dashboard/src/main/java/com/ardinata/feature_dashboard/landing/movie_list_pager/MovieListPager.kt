@@ -1,4 +1,4 @@
-package com.ardinata.feature_dashboard.landing.pager
+package com.ardinata.feature_dashboard.landing.movie_list_pager
 
 import android.view.View
 import androidx.fragment.app.viewModels

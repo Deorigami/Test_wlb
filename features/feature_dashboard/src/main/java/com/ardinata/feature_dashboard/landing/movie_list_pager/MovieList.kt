@@ -1,4 +1,4 @@
-package com.ardinata.feature_dashboard.landing.pager
+package com.ardinata.feature_dashboard.landing.movie_list_pager
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerDrinkListBinding
+import com.ardinata.feature_dashboard.landing.movie_list_pager.adapter.MovieListVPAdapter
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.service_cocktail.domain.resource.MovieDBSection
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment

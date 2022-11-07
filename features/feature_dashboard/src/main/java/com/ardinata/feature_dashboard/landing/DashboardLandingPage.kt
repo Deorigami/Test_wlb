@@ -7,10 +7,12 @@ import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
-import com.ardinata.feature_dashboard.landing.pager.DashboardPagerAdapter
-import com.ardinata.feature_dashboard.landing.pager.PagerFavDrinkList
-import com.ardinata.feature_dashboard.landing.pager.MovieList
+import com.ardinata.feature_dashboard.landing.mapper.TabsItemMapper
+import com.ardinata.feature_dashboard.landing.movie_list_pager.adapter.DashboardPagerAdapter
+import com.ardinata.feature_dashboard.landing.movie_list_pager.PagerFavDrinkList
+import com.ardinata.feature_dashboard.landing.movie_list_pager.MovieList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
+import com.ardinata.feature_dashboard.landing.search_pager.SearchPager
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import com.ardinata.test.wlb.template.TabsItem
 import com.google.android.material.tabs.TabLayout
@@ -40,6 +42,7 @@ class DashboardLandingPage(
             lifecycle,
             MovieList(MovieList.Companion.PageMode.MOVIE),
             MovieList(MovieList.Companion.PageMode.TV),
+            SearchPager(),
             PagerFavDrinkList()
         )
     }
@@ -66,61 +69,7 @@ class DashboardLandingPage(
             binding?.tabs ?: return,
             binding?.viewPager ?: return
         ) { tabs, position ->
-            tabs.customView = TabsItem(requireContext()).apply {
-                when (position) {
-                    0 -> data = TabsItem.Data(
-                        activeIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_movie_filled
-                        ),
-                        inactiveIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_movie
-                        ),
-                        activeColor = ContextCompat.getColor(requireContext(), R.color.brightSkyBlue),
-                        inactiveColor = ContextCompat.getColor(
-                            requireContext(),
-                            R.color.battleshipGrey
-                        ),
-                        title = "Movie",
-                    ).apply {
-                        isActive = true
-                    }
-                    1 -> data = TabsItem.Data(
-                        activeIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_tv_filled
-                        ),
-                        inactiveIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_tv
-                        ),
-                        activeColor = ContextCompat.getColor(requireContext(), R.color.brightSkyBlue),
-                        inactiveColor = ContextCompat.getColor(
-                            requireContext(),
-                            R.color.battleshipGrey
-                        ),
-                        title = "Series"
-                    )
-                    2 -> data = TabsItem.Data(
-                        activeIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_heart_filled
-                        ),
-                        inactiveIcon = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_heart_base_black
-                        ),
-                        activeColor = ContextCompat.getColor(requireContext(), R.color.brightSkyBlue),
-                        inactiveColor = ContextCompat.getColor(
-                            requireContext(),
-                            R.color.battleshipGrey
-                        ),
-                        title = "Favorite",
-                    )
-                    else -> { return@apply }
-                }
-            }
+            tabs.customView = TabsItemMapper().invoke(requireContext(), position)
         }.attach()
     }
 

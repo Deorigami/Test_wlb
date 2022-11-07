@@ -14,5 +14,7 @@ enum class MovieDBSection(
     ON_THE_AIR_TV("On The Air", 7),
     POPULAR_TV("Popular", 8);
 
-    operator fun invoke(name: String) : MovieDBSection = values().firstOrNull { it.name == name } ?: NOW_PLAYING_MOVIE
+    companion object {
+        operator fun invoke(name: String) : MovieDBSection = values().firstOrNull { it.name == name } ?: NOW_PLAYING_MOVIE
+    }
 }

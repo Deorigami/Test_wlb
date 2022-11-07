@@ -3,10 +3,10 @@ package com.ardinata.feature_dashboard.landing.presenter
 import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.ardinata.service_cocktail.domain.entity.MovieListEntity
 import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
 import com.ardinata.service_cocktail.domain.entity.TVListItemEntity
 import com.ardinata.service_cocktail.domain.resource.MovieDBSection
+import com.ardinata.service_cocktail.domain.usecase.local.GetRoomMovieItemUseCase
 import com.ardinata.service_cocktail.domain.usecase.local.InsertRoomMovieItemUseCase
 import com.ardinata.service_cocktail.domain.usecase.service.*
 import com.ardinata.test.wlb.core.base.BaseViewModel
@@ -31,8 +31,9 @@ class DashboardViewModel @Inject constructor(
     getTopRatedTVUseCase: GetTopRatedTVUseCase,
 
     // RoomDB Movie UseCase
-    insertRoomMovieItemUseCase: InsertRoomMovieItemUseCase
-) : BaseViewModel(), MovieDBRoomHelper by MovieDBRoomHelperImpl() {
+    insertRoomMovieItemUseCase: InsertRoomMovieItemUseCase,
+    getRoomMovieItemUseCase: GetRoomMovieItemUseCase
+) : BaseViewModel(){
     override fun getKillableStatefulLiveData(): List<StatefulLiveData<*, *>> {
         return listOf()
     }
@@ -79,6 +80,11 @@ class DashboardViewModel @Inject constructor(
 
     private val insertMovieRoom = StatefulLiveData(
         insertRoomMovieItemUseCase,
+        CoroutineScope(Dispatchers.IO)
+    )
+
+    private val getMovieRoom = StatefulLiveData(
+        getRoomMovieItemUseCase,
         CoroutineScope(Dispatchers.IO)
     )
 
@@ -212,6 +218,15 @@ class DashboardViewModel @Inject constructor(
             value = newValue
         }
         addSource(popularTV.onSuccess){ update() }
+    }
+
+    init {
+        getMovieRoom.getData(
+            MovieDBSection.NOW_PLAYING_MOVIE,
+            onSuccess = {
+                Log.d("ANGGATAG", "getMovieRoom : $it")
+            }
+        )
     }
 
     // GET DATA MOVIES

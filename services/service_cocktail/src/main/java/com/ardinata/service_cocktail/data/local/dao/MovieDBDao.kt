@@ -1,11 +1,10 @@
 package com.ardinata.service_cocktail.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
+import androidx.room.*
 import com.ardinata.service_cocktail.data.local.entity.MovieAndSectionRelationEntity
 import com.ardinata.service_cocktail.data.local.entity.MovieListItemRoomEntity
 import com.ardinata.service_cocktail.data.local.entity.MovieSectionRoomEntity
+import com.ardinata.service_cocktail.data.local.entity.MovieWithSectionRoomEntity
 
 @Dao
 interface MovieDBDao {
@@ -18,5 +17,8 @@ interface MovieDBDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieSection(movieSection : MovieSectionRoomEntity) : Long
 
+    @Transaction
+    @Query("SELECT * FROM movie_item")
+    fun getMovieList() : List<MovieWithSectionRoomEntity>
 
 }

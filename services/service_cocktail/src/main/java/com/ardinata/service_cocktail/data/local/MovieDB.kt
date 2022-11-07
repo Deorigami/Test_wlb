@@ -13,7 +13,7 @@ import com.ardinata.service_cocktail.data.local.entity.MovieSectionRoomEntity
         MovieSectionRoomEntity::class,
         MovieAndSectionRelationEntity::class
     ],
-    version = 2,
+    version = 5,
     exportSchema = false
 )
 abstract class MovieDB : RoomDatabase() {
