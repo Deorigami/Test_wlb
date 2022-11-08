@@ -20,4 +20,25 @@ data class MovieListItemEntity(
     val voteCount: Int,
     val page: Long = 1L,
     val section: MovieDBSection = MovieDBSection.NOW_PLAYING_MOVIE
-)
+) {
+    companion object{
+        val DEFAULT = MovieListItemEntity(
+            false,
+            "",
+            emptyList(),
+            0,
+            "",
+            "",
+            "",
+            0.0,
+            "",
+            "",
+            "",
+            false,
+            0.0,
+            0,
+            1,
+            MovieDBSection.NONE,
+        )
+    }
+}

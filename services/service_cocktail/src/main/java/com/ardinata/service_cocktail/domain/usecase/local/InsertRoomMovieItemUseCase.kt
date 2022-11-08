@@ -8,13 +8,13 @@ import javax.inject.Inject
 
 class InsertRoomMovieItemUseCase @Inject constructor(
     private val roomRepo: MovieDBRoomRepository
-) : BaseUseCase<List<MovieListItemEntity>, Long>(){
+) : BaseUseCase<List<MovieListItemEntity>, List<Long>>(){
 
-    override suspend fun build(param: List<MovieListItemEntity>): Result<Long> {
+    override suspend fun build(param: List<MovieListItemEntity>): Result<List<Long>> {
         return roomRepo.insertMovieItem(param)
     }
 
-    override val default: Long
-        get() = 0L
+    override val default: List<Long>
+        get() = emptyList()
 
 }

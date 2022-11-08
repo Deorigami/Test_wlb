@@ -17,21 +17,13 @@ class MovieDBRoomRepositoryImpl @Inject constructor(
     private val movieListItemDBMapper: MovieListItemDomainEntityToRoomMapper,
     private val movieListItemRoomToDomainEntityMapper: MovieListItemRoomToDomainEntityMapper
 ) : MovieDBRoomRepository {
-    override suspend fun insertMovieItem(item: List<MovieListItemEntity>): Result<Long> {
-        dao.insertMovie(item.map { movieListItemDBMapper.invoke(it) })
+    override suspend fun insertMovieItem(item: List<MovieListItemEntity>): Result<List<Long>> {
+        val insertReturn = dao.insertMovie(item.map { movieListItemDBMapper.invoke(it) })
         item.forEach {
-            val terrifierFound = it.title.contains("Terrifier 2")
-            if (terrifierFound){
-//                Log.d("ANGGATAG", "${it.title} : ${it.section.name}")
-            }
-            val sectionId = dao.insertMovieSection(MovieSectionRoomEntity(it.section.name)).also {
-//                if (terrifierFound) Log.d("ANGGATAG", "MovieSectionId : $it")
-            }
-            dao.insertMovieAndSectionRelation(MovieAndSectionRelationEntity(it.id.toLong(), sectionId)).also {
-//                if (terrifierFound) Log.d("ANGGATAG", "MovieRelation : $it")
-            }
+            val sectionId = dao.insertMovieSection(MovieSectionRoomEntity(it.section.name))
+            dao.insertMovieAndSectionRelation(MovieAndSectionRelationEntity(it.id.toLong(), sectionId))
         }
-        return Result(1)
+        return Result(insertReturn)
     }
 
     override suspend fun getMovieBySection(): Result<List<MovieListItemEntity>> {

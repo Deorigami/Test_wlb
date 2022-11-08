@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "AnggaArdinata TestWLB"
+rootProject.name = "AnggaArdinata Test_GOPLAY"
 include ':app'
 include ':component'
 include ':features:feature_dashboard'
