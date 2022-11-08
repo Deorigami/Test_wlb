@@ -1,4 +1,5 @@
 package com.ardinata.service_cocktail.domain.entity
+import com.ardinata.service_cocktail.domain.resource.MovieDBSection
 import com.google.gson.annotations.SerializedName
 
 
@@ -16,5 +17,7 @@ data class MovieListItemEntity(
     val title: String,
     val video: Boolean,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    val page: Long = 1L,
+    val section: MovieDBSection = MovieDBSection.NOW_PLAYING_MOVIE
 )

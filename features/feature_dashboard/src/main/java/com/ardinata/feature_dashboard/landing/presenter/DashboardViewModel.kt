@@ -1,13 +1,19 @@
 package com.ardinata.feature_dashboard.landing.presenter
 
+import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
+import com.ardinata.service_cocktail.domain.entity.MovieListEntity
 import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
 import com.ardinata.service_cocktail.domain.entity.TVListItemEntity
+import com.ardinata.service_cocktail.domain.resource.MovieDBSection
+import com.ardinata.service_cocktail.domain.usecase.local.InsertRoomMovieItemUseCase
 import com.ardinata.service_cocktail.domain.usecase.service.*
 import com.ardinata.test.wlb.core.base.BaseViewModel
 import com.ardinata.test.wlb.core.extension.StatefulLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,50 +28,58 @@ class DashboardViewModel @Inject constructor(
     getAiringTodayTVUseCase: GetAiringTodayTVUseCase,
     getOnTheAirTVUseCase: GetOnTheAirTVUseCase,
     getPopularTVUseCase: GetPopularTVUseCase,
-    getTopRatedTVUseCase: GetTopRatedTVUseCase
-) : BaseViewModel() {
+    getTopRatedTVUseCase: GetTopRatedTVUseCase,
+
+    // RoomDB Movie UseCase
+    insertRoomMovieItemUseCase: InsertRoomMovieItemUseCase
+) : BaseViewModel(), MovieDBRoomHelper by MovieDBRoomHelperImpl() {
     override fun getKillableStatefulLiveData(): List<StatefulLiveData<*, *>> {
         return listOf()
     }
 
-    val upcomingMovies = StatefulLiveData(
+    private val upcomingMovies = StatefulLiveData(
         getUpcomingMovieUseCase,
         viewModelScope
     )
 
-    val topRatedMovie = StatefulLiveData(
+    private val topRatedMovie = StatefulLiveData(
         getTopRatedMovieUseCase,
         viewModelScope
     )
 
-    val nowPlayingMovie = StatefulLiveData(
+    private val nowPlayingMovie = StatefulLiveData(
         getNowPlayingMovieUseCase,
         viewModelScope
     )
 
-    val popularMovie = StatefulLiveData(
+    private val popularMovie = StatefulLiveData(
         getPopularMovieUseCase,
         viewModelScope
     )
 
-    val popularTV = StatefulLiveData(
+    private val popularTV = StatefulLiveData(
         getPopularTVUseCase,
         viewModelScope
     )
 
-    val topRatedTV = StatefulLiveData(
+    private val topRatedTV = StatefulLiveData(
         getTopRatedTVUseCase,
         viewModelScope
     )
 
-    val airingTodayTV = StatefulLiveData(
+    private val airingTodayTV = StatefulLiveData(
         getAiringTodayTVUseCase,
         viewModelScope
     )
 
-    val onTheAirTV = StatefulLiveData(
+    private val onTheAirTV = StatefulLiveData(
         getOnTheAirTVUseCase,
         viewModelScope
+    )
+
+    private val insertMovieRoom = StatefulLiveData(
+        insertRoomMovieItemUseCase,
+        CoroutineScope(Dispatchers.IO)
     )
 
     // PAGINATED MOVIE
@@ -80,6 +94,10 @@ class DashboardViewModel @Inject constructor(
                 }
             }
             value = newValue
+            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+                page = popularMovie.onSuccess.value?.page?.toLong() ?: 1L,
+                section = MovieDBSection.POPULAR_MOVIE
+            ) })
         }
         addSource(popularMovie.onSuccess){ update() }
     }
@@ -94,6 +112,10 @@ class DashboardViewModel @Inject constructor(
                 }
             }
             value = newValue
+            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+                page = upcomingMovies.onSuccess.value?.page?.toLong() ?: 1L,
+                section = MovieDBSection.UPCOMING_MOVIE
+            ) })
         }
         addSource(upcomingMovies.onSuccess){ update() }
     }
@@ -108,6 +130,10 @@ class DashboardViewModel @Inject constructor(
                 }
             }
             value = newValue
+            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+                page = topRatedMovie.onSuccess.value?.page?.toLong() ?: 1L,
+                section = MovieDBSection.TOP_RATED_MOVIE
+            ) })
         }
         addSource(topRatedMovie.onSuccess){ update() }
     }
@@ -122,6 +148,10 @@ class DashboardViewModel @Inject constructor(
                 }
             }
             value = newValue
+            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+                page = nowPlayingMovie.onSuccess.value?.page?.toLong() ?: 1L,
+                section = MovieDBSection.NOW_PLAYING_MOVIE
+            ) })
         }
         addSource(nowPlayingMovie.onSuccess){ update() }
     }

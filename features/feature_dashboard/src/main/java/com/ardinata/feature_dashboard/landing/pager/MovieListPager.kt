@@ -72,18 +72,6 @@ class MovieListPager(
             paginatedOnTheAirTV.observe(viewLifecycleOwner) {
                 it?.let { setSeriesSection(it) }
             }
-
-            // Movie LifeCycle
-            upcomingMovies.listen(viewLifecycleOwner)
-            nowPlayingMovie.listen(viewLifecycleOwner)
-            popularMovie.listen(viewLifecycleOwner)
-            topRatedMovie.listen(viewLifecycleOwner)
-
-            //Series LifeCycle
-            upcomingMovies.listen(viewLifecycleOwner)
-            nowPlayingMovie.listen(viewLifecycleOwner)
-            popularMovie.listen(viewLifecycleOwner)
-            topRatedMovie.listen(viewLifecycleOwner)
         }
     }
 

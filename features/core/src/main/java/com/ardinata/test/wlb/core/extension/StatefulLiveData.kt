@@ -1,11 +1,13 @@
 package com.ardinata.test.wlb.core.extension
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.ardinata.test.wlb.core.base.BaseUseCase
 import com.ardinata.test.wlb.core.model.Error
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class StatefulLiveData<P, R>(
     private val executor : BaseUseCase<P, R>,
@@ -87,7 +89,7 @@ class StatefulLiveData<P, R>(
             param
         ){
             if (it is StatefulResult.Success) {
-                this.onSuccess.value = it.data
+                this.onSuccess.postValue(it.data)
                 onSuccess.invoke(it.data)
             }
             else if (it is StatefulResult.Failed) {
