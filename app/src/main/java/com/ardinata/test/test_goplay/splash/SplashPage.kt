@@ -24,7 +24,7 @@ class SplashPage(
     override fun didMount(view: View) {
         super.didMount(view)
         lifecycleScope.launchWhenResumed {
-            delay(3000)
+            delay(2000)
             router.navigateToDashboard(requireContext())
             requireActivity().finish()
         }
