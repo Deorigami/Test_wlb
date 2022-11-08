@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.ardinata.test.wlb.template.SimpleHeader
+    <com.ardinata.test.test_goplay.template.SimpleHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header"
@@ -14,7 +14,7 @@
         app:title="@string/page_title"
         />
 
-    <com.ardinata.test.wlb.organism.CategorySelector
+    <com.ardinata.test.test_goplay.organism.CategorySelector
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/header"

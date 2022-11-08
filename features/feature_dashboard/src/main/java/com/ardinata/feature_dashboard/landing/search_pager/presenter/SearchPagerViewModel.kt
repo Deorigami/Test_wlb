@@ -1,14 +1,13 @@
 package com.ardinata.feature_dashboard.landing.search_pager.presenter
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
-import com.ardinata.service_cocktail.domain.entity.SearchMovieRequestEntity
-import com.ardinata.service_cocktail.domain.usecase.service.SearchMovieUseCase
-import com.ardinata.test.wlb.core.base.BaseViewModel
-import com.ardinata.test.wlb.core.extension.NonNullMutableLiveData
-import com.ardinata.test.wlb.core.extension.StatefulLiveData
+import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
+import com.ardinata.service_movie_db.domain.entity.SearchMovieRequestEntity
+import com.ardinata.service_movie_db.domain.usecase.service.SearchMovieUseCase
+import com.ardinata.test.test_goplay.core.base.BaseViewModel
+import com.ardinata.test.test_goplay.core.extension.NonNullMutableLiveData
+import com.ardinata.test.test_goplay.core.extension.StatefulLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

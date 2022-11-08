@@ -26,7 +26,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.ardinata.test.wlb.organism.BasicTextField
+        <com.ardinata.test.test_goplay.organism.BasicTextField
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textFieldView"
@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toTopOf="@id/button"
             app:layout_constraintTop_toBottomOf="@id/textFieldView">
 
-            <com.ardinata.test.wlb.template.SegmentedFilterGroup
+            <com.ardinata.test.test_goplay.template.SegmentedFilterGroup
                 android:id="@+id/filterGroup"
                 android:paddingHorizontal="24dp"
                 android:paddingTop="16dp"

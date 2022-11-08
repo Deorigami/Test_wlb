@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ardinata.test.wlb">
+    package="com.ardinata.test.test_goplay">
 
     <application
-        android:name="com.ardinata.test.wlb.MyApp"
+        android:name="com.ardinata.test.test_goplay.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:theme="@style/Theme.TestMultiModule">
         <activity
             android:launchMode="singleTask"
-            android:name="com.ardinata.test.wlb.splash.SplashActivity"
+            android:name="com.ardinata.test.test_goplay.splash.SplashActivity"
             />
     </application>
 

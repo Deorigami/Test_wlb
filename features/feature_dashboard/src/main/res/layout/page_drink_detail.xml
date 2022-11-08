@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.ardinata.test.wlb.template.SimpleHeader
+    <com.ardinata.test.test_goplay.template.SimpleHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Detail"
@@ -59,7 +59,7 @@
                 android:textAppearance="@style/TextAppearance.Paragraph"
                 app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
 
-            <com.ardinata.test.wlb.template.IngredientsGroup
+            <com.ardinata.test.test_goplay.template.IngredientsGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ingredientList"

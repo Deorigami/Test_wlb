@@ -8,11 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerSearchBinding
 import com.ardinata.feature_dashboard.landing.search_pager.presenter.SearchPagerViewModel
-import com.ardinata.feature_util.NetworkStateListener
-import com.ardinata.service_cocktail.domain.entity.SearchMovieRequestEntity
-import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.core.extension.textChanges
-import com.ardinata.test.wlb.organism.CardItemView
+import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
+import com.ardinata.test.test_goplay.core.extension.textChanges
+import com.ardinata.test.test_goplay.organism.CardItemView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce

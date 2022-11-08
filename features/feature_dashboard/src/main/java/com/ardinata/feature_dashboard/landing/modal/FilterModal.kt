@@ -8,8 +8,8 @@ import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.ModalFilterBinding
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
-import com.ardinata.test.wlb.core.base.BaseCustomHeightViewBindingBottomSheetDialog
-import com.ardinata.test.wlb.core.extension.hideKeyboard
+import com.ardinata.test.test_goplay.core.base.BaseCustomHeightViewBindingBottomSheetDialog
+import com.ardinata.test.test_goplay.core.extension.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

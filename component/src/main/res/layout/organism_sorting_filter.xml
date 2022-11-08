@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.ardinata.test.wlb.molecule.RadioButtonWithText
+    <com.ardinata.test.test_goplay.molecule.RadioButtonWithText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipChildren="false"
@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <com.ardinata.test.wlb.molecule.RadioButtonWithText
+    <com.ardinata.test.test_goplay.molecule.RadioButtonWithText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipChildren="false"

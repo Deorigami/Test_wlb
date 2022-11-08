@@ -1,19 +1,17 @@
 package com.ardinata.feature_dashboard.landing.movie_list_pager
 
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerMovieListBinding
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.feature_util.NetworkStateListener
-import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
-import com.ardinata.service_cocktail.domain.entity.TVListItemEntity
-import com.ardinata.service_cocktail.domain.resource.MovieDBSection
-import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.organism.CardItemView
+import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
+import com.ardinata.service_movie_db.domain.entity.TVListItemEntity
+import com.ardinata.service_movie_db.domain.resource.MovieDBSection
+import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
+import com.ardinata.test.test_goplay.organism.CardItemView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -4,5 +4,5 @@ apply {
 
 dependencies {
     "api"(project(":features:core"))
-    "api"(project(":services:service_cocktail"))
+    "api"(project(":services:service_movie_db"))
 }

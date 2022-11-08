@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.ardinata.test.wlb.template.group.CardGroup
+    <com.ardinata.test.test_goplay.template.group.CardGroup
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/cardList"
         android:paddingEnd="24dp"

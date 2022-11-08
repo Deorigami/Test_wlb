@@ -1,15 +1,11 @@
 package com.ardinata.feature_dashboard.detail
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDrinkDetailBinding
 import com.ardinata.feature_dashboard.detail.presenter.GameDetailViewModel
-import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.util.customSetImage
-import com.ardinata.test.wlb.core.extension.capitalizeWords
-import com.ardinata.test.wlb.molecule.IngredientItem
+import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

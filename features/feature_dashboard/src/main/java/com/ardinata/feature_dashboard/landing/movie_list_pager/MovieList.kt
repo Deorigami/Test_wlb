@@ -8,9 +8,9 @@ import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerDrinkListBinding
 import com.ardinata.feature_dashboard.landing.movie_list_pager.adapter.MovieListVPAdapter
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
-import com.ardinata.service_cocktail.domain.resource.MovieDBSection
-import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
-import com.ardinata.test.wlb.organism.TabsCustomItem
+import com.ardinata.service_movie_db.domain.resource.MovieDBSection
+import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
+import com.ardinata.test.test_goplay.organism.TabsCustomItem
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

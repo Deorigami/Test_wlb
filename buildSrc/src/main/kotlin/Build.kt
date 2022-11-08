@@ -4,7 +4,7 @@ object Build {
     const val androidMinSdkVersion = 21
     const val androidCompileSdkVersion = 32
     const val androidTargetSdkVersion = 31
-    const val applicationId = "com.wlb.test.angga"
+    const val applicationId = "com.goplay.test.angga"
 
     private const val androidBuildToolsVersion = "7.2.0"
     const val androidBuildTools = "com.android.tools.build:gradle:$androidBuildToolsVersion"

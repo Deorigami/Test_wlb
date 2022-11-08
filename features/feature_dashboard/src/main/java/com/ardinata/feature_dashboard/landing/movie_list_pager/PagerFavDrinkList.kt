@@ -6,7 +6,7 @@ import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageFavouriteDrinkListBinding
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
-import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
+import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

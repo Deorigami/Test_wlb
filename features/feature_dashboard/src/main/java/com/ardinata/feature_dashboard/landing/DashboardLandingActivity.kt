@@ -2,7 +2,7 @@ package com.ardinata.feature_dashboard.landing
 
 import android.os.Bundle
 import com.ardinata.feature_dashboard.R
-import com.ardinata.test.wlb.core.base.BaseActivity
+import com.ardinata.test.test_goplay.core.base.BaseActivity
 
 class DashboardLandingActivity(
     layout: Int = R.layout.base_activity_layout

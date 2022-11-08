@@ -1,17 +1,16 @@
 package com.ardinata.feature_dashboard.landing.presenter
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
-import com.ardinata.service_cocktail.domain.entity.TVListItemEntity
-import com.ardinata.service_cocktail.domain.resource.MovieDBSection
-import com.ardinata.service_cocktail.domain.usecase.local.GetRoomMovieItemUseCase
-import com.ardinata.service_cocktail.domain.usecase.local.InsertRoomMovieItemUseCase
-import com.ardinata.service_cocktail.domain.usecase.service.*
-import com.ardinata.test.wlb.core.base.BaseViewModel
-import com.ardinata.test.wlb.core.extension.NonNullMutableLiveData
-import com.ardinata.test.wlb.core.extension.StatefulLiveData
+import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
+import com.ardinata.service_movie_db.domain.entity.TVListItemEntity
+import com.ardinata.service_movie_db.domain.resource.MovieDBSection
+import com.ardinata.service_movie_db.domain.usecase.local.GetRoomMovieItemUseCase
+import com.ardinata.service_movie_db.domain.usecase.local.InsertRoomMovieItemUseCase
+import com.ardinata.service_movie_db.domain.usecase.service.*
+import com.ardinata.test.test_goplay.core.base.BaseViewModel
+import com.ardinata.test.test_goplay.core.extension.NonNullMutableLiveData
+import com.ardinata.test.test_goplay.core.extension.StatefulLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

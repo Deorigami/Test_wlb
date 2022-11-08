@@ -25,4 +25,4 @@ include ':features:core'
 include ':features:feature_util'
 include ':features:config'
 
-include 'services:service_cocktail'
+include 'services:service_movie_db'

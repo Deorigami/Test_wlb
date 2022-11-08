@@ -3,7 +3,7 @@ package com.ardinata.feature_dashboard.landing.mapper
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.ardinata.feature_dashboard.R
-import com.ardinata.test.wlb.template.TabsItem
+import com.ardinata.test.test_goplay.template.TabsItem
 
 class TabsItemMapper {
     operator fun invoke(

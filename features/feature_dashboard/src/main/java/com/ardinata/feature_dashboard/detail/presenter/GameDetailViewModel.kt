@@ -1,8 +1,7 @@
 package com.ardinata.feature_dashboard.detail.presenter
 
-import androidx.lifecycle.viewModelScope
-import com.ardinata.test.wlb.core.base.BaseViewModel
-import com.ardinata.test.wlb.core.extension.StatefulLiveData
+import com.ardinata.test.test_goplay.core.base.BaseViewModel
+import com.ardinata.test.test_goplay.core.extension.StatefulLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

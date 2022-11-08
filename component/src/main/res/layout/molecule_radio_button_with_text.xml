@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.ardinata.test.wlb.atom.RadioButton
+    <com.ardinata.test.test_goplay.atom.RadioButton
         android:id="@+id/radioButton"
         app:layout_constraintTop_toTopOf="@id/textView"
         android:layout_width="wrap_content"
