@@ -6,9 +6,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.ardinata.component.databinding.GroupBaseLayoutBinding
 import com.ardinata.test.test_goplay.molecule.IngredientItem
 import com.ardinata.test.test_goplay.util.BaseRecyclerViewAdapter
+import com.ardinata.test.test_goplay.util.BaseRecyclerViewAdapter2
 
 class IngredientsGroup(
     context: Context,
@@ -16,7 +18,10 @@ class IngredientsGroup(
 ) : LinearLayout(context, attrs){
     private val binding = GroupBaseLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val adapter = object : BaseRecyclerViewAdapter<IngredientItem.Data, IngredientItem>() {
+    private val adapter = object : BaseRecyclerViewAdapter2<IngredientItem.Data, IngredientItem>(
+        width = RecyclerView.LayoutParams.WRAP_CONTENT,
+        heigth = RecyclerView.LayoutParams.MATCH_PARENT
+    ) {
         override fun ViewHolder<IngredientItem>.onBind(item: IngredientItem.Data, position: Int) {
             view.apply {
                 title = item.title
@@ -25,13 +30,13 @@ class IngredientsGroup(
             }
         }
 
-        override fun registerView(): IngredientItem = IngredientItem(context)
+        override fun generateView(viewType: Int): IngredientItem = IngredientItem(context)
     }
 
     var items = mutableListOf<IngredientItem.Data>()
         set(value){
             field = value
-            adapter.items = value
+            adapter.submitList(value)
         }
 
     init {
@@ -41,8 +46,8 @@ class IngredientsGroup(
             val paddingStart = this@IngredientsGroup.paddingStart
             val paddingEnd = this@IngredientsGroup.paddingEnd
             updatePadding(left = paddingStart, right = paddingEnd, top = paddingStart, bottom = paddingStart)
-            adapter = this@IngredientsGroup.adapter.also { it.items = items }
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = this@IngredientsGroup.adapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             itemAnimator = null
         }
 

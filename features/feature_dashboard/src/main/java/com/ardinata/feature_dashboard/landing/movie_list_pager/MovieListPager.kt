@@ -1,8 +1,10 @@
 package com.ardinata.feature_dashboard.landing.movie_list_pager
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerMovieListBinding
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
@@ -11,8 +13,11 @@ import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
 import com.ardinata.service_movie_db.domain.entity.TVListItemEntity
 import com.ardinata.service_movie_db.domain.resource.MovieDBSection
 import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
+import com.ardinata.test.test_goplay.core.contract.RouterContract
 import com.ardinata.test.test_goplay.organism.CardItemView
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MovieListPager(
@@ -21,6 +26,8 @@ class MovieListPager(
 ) : BaseViewBindingFragment<PagerMovieListBinding>() {
 
     private val viewModel by viewModels<DashboardViewModel>()
+    @Inject
+    override lateinit var router: DashboardLandingContract.Router
 
     override fun initBinding(view: View) {
         binding = PagerMovieListBinding.bind(view)
@@ -104,7 +111,7 @@ class MovieListPager(
             binding?.cardList?.apply {
                 items = list.distinctBy { it.id }.map {
                     CardItemView.Data(
-                        imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
+                        imagePoster = it.posterPath,
                         title = it.title,
                         category = "",
                         "",
@@ -112,6 +119,14 @@ class MovieListPager(
                     )
                 }.toMutableList()
                 onFinishScrolling = { getData() }
+                onCardPressed = { idx ->
+                    list.getOrNull(idx)?.let {
+                        router.navigateToMovieDetailPage(
+                            requireContext(),
+                            movieItem = it
+                        )
+                    }
+                }
             }
         }
     }
@@ -121,7 +136,7 @@ class MovieListPager(
             binding?.cardList?.apply {
                 items = list.distinctBy { it.id }.map {
                     CardItemView.Data(
-                        imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
+                        imagePoster = it.posterPath,
                         title = it.name,
                         category = "",
                         "",
@@ -129,6 +144,14 @@ class MovieListPager(
                     )
                 }.toMutableList()
                 onFinishScrolling = { getData() }
+                onCardPressed = { idx ->
+                    list.getOrNull(idx)?.let {
+                        router.navigateToMovieDetailPage(
+                            requireContext(),
+                            tvListItemEntity = it
+                        )
+                    }
+                }
             }
         }
     }

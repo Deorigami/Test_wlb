@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,10 @@ class CardGroup(
                 category = item.category
                 setOnClickListener { onCardPressed.invoke(position) }
             }
+        }
+
+        override fun onItemPressed(index: Int) {
+            onCardPressed.invoke(index)
         }
 
         override fun generateView(viewType: Int): CardItemView = CardItemView(context)

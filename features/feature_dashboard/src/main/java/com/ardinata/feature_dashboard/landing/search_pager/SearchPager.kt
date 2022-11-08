@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerSearchBinding
 import com.ardinata.feature_dashboard.landing.search_pager.presenter.SearchPagerViewModel
@@ -16,6 +17,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchPager(
@@ -23,6 +25,9 @@ class SearchPager(
 ): BaseViewBindingFragment<PagerSearchBinding>(){
 
     private val viewModel by viewModels<SearchPagerViewModel>()
+
+    @Inject
+    override lateinit var router : DashboardLandingContract.Router
 
     override fun initBinding(view: View) {
         binding = PagerSearchBinding.bind(view)
@@ -57,6 +62,14 @@ class SearchPager(
                                 ).show()
                             }
                         }
+                        onCardPressed = { idx ->
+                            it.getOrNull(idx)?.let {
+                                router.navigateToMovieDetailPage(
+                                    requireContext(),
+                                    movieItem = it
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -84,7 +97,7 @@ class SearchPager(
 
     @OptIn(FlowPreview::class)
     private fun setListener() {
-        binding?.textField?.textField?.textChanges()?.debounce(500)?.onEach {
+        binding?.textField?.textField?.textChanges()?.debounce(1000)?.onEach {
             if (!it.isNullOrBlank()) viewModel.searchMovie(it.toString())
         }?.launchIn(lifecycleScope)
     }

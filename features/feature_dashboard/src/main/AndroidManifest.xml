@@ -14,7 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".detail.DrinkDetailActivity"
+        <activity android:name=".detail.DetailActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"

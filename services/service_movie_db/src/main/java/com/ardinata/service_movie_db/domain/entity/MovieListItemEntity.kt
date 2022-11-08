@@ -1,7 +1,9 @@
 package com.ardinata.service_movie_db.domain.entity
+import android.os.Parcelable
 import com.ardinata.service_movie_db.domain.resource.MovieDBSection
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class MovieListItemEntity(
     val adult: Boolean,
     val backdropPath: String,
@@ -18,8 +20,9 @@ data class MovieListItemEntity(
     val voteAverage: Double,
     val voteCount: Int,
     val page: Long = 1L,
-    val section: MovieDBSection = MovieDBSection.NOW_PLAYING_MOVIE
-) {
+    val section: MovieDBSection = MovieDBSection.NOW_PLAYING_MOVIE,
+    val isFavorite: Boolean = false
+) : Parcelable {
     companion object{
         val DEFAULT = MovieListItemEntity(
             false,

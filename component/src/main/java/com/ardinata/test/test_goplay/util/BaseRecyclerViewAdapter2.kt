@@ -60,6 +60,4 @@ abstract class  BaseRecyclerViewAdapter2<ITEM : Any,V : View>(
             itemView.setOnClickListener { onItemPressed(position) }
         }
     }
-
-
 }

@@ -59,12 +59,24 @@
                 android:textAppearance="@style/TextAppearance.Paragraph"
                 app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
 
+            <TextView
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="24dp"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                android:layout_marginTop="16dp"
+                android:id="@+id/castTitle"
+                android:text="Cast"
+                android:textAppearance="@style/TextAppearance.H3"
+                android:layout_height="wrap_content"
+                />
+
             <com.ardinata.test.test_goplay.template.IngredientsGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ingredientList"
-                app:layout_constraintTop_toBottomOf="@id/description"
-                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/castTitle"
                 android:paddingHorizontal="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0"

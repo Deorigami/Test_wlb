@@ -1,8 +1,10 @@
 package com.ardinata.service_movie_db.data.webservice.service
 
+import com.ardinata.service_movie_db.data.webservice.dto.CastListDto
 import com.ardinata.service_movie_db.data.webservice.dto.MovieListDto
 import com.ardinata.service_movie_db.data.webservice.dto.TVListDto
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieDBService {
@@ -66,4 +68,16 @@ interface MovieDBService {
     suspend fun searchTV(
         @Query("query") query : String
     ) : TVListDto
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getMovieCredits(
+        @Path("movie_id") movieID : String,
+        @Query("language") lang:String = "en-US"
+    ) : CastListDto
+
+    @GET("tv/{series_id}/credits")
+    suspend fun getTVCredits(
+        @Path("series_id") movieID : String,
+        @Query("language") lang:String = "en-US"
+    ) : CastListDto
 }

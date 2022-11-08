@@ -7,7 +7,7 @@ import javax.inject.Inject
 class TVListItemDtoMaper @Inject constructor() {
     operator fun invoke(from :List<TVListItemDto>) :List<TVListItemEntity> {
         return from.map { TVListItemEntity(
-            backdropPath = it.backdropPath ?: "",
+            backdropPath = "https://image.tmdb.org/t/p/w500${it.backdropPath}",
             firstAirDate = it.firstAirDate ?: "",
             genreIds = it.genreIds,
             id = it.id,
@@ -17,7 +17,7 @@ class TVListItemDtoMaper @Inject constructor() {
             originalName = it.originalName,
             overview = it.overview,
             popularity = it.popularity,
-            posterPath = it.posterPath ?: "",
+            posterPath = "https://image.tmdb.org/t/p/w200${it.posterPath}",
             voteAverage = it.voteAverage,
             voteCount = it.voteCount,
         ) }

@@ -1,5 +1,9 @@
 package com.ardinata.service_movie_db.domain.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class TVListItemEntity(
     val backdropPath: String,
     val firstAirDate: String,
@@ -14,4 +18,4 @@ data class TVListItemEntity(
     val posterPath: String,
     val voteAverage: Double,
     val voteCount: Int
-)
+) : Parcelable

@@ -8,14 +8,14 @@ class MovieListItemDtoMapper @Inject constructor() {
     operator fun invoke(from : List<MovieListItemDto>) : List<MovieListItemEntity> {
         return from.map { MovieListItemEntity(
             adult = it.adult,
-            backdropPath = it.backdropPath ?: "",
+            backdropPath = "https://image.tmdb.org/t/p/w500${it.backdropPath}",
             genreIds = it.genreIds,
             id = it.id,
             originalLanguage = it.originalLanguage,
             originalTitle = it.originalTitle ?: "",
             overview = it.overview,
             popularity = it.popularity,
-            posterPath = it.posterPath ?: "",
+            posterPath = "https://image.tmdb.org/t/p/w200${it.posterPath}",
             releaseDate = it.releaseDate ?: "",
             title = it.title,
             video = it.video,
