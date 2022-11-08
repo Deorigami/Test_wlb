@@ -20,7 +20,7 @@ class MovieListItemDomainEntityToRoomMapper @Inject constructor() {
             video = from.video,
             voteAverage = from.voteAverage,
             voteCount = from.voteCount,
-            page = from.page
+            page = from.page,
         )
     }
 }

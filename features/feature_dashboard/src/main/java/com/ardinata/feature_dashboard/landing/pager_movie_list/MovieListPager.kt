@@ -1,7 +1,6 @@
-package com.ardinata.feature_dashboard.landing.movie_list_pager
+package com.ardinata.feature_dashboard.landing.pager_movie_list
 
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
@@ -13,9 +12,7 @@ import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
 import com.ardinata.service_movie_db.domain.entity.TVListItemEntity
 import com.ardinata.service_movie_db.domain.resource.MovieDBSection
 import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
-import com.ardinata.test.test_goplay.core.contract.RouterContract
 import com.ardinata.test.test_goplay.organism.CardItemView
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,7 +41,7 @@ class MovieListPager(
             },
             onLost = {
                 viewModel.isNetworkAvailable.postValue(false)
-                viewModel.getMovieRoom.getData(
+                viewModel.getMovieRoom.executeLocally(
                     Unit,
                     onSuccess = {
                         lifecycleScope.launchWhenResumed {
@@ -112,10 +109,7 @@ class MovieListPager(
                 items = list.distinctBy { it.id }.map {
                     CardItemView.Data(
                         imagePoster = it.posterPath,
-                        title = it.title,
-                        category = "",
-                        "",
-                        ""
+                        title = it.title
                     )
                 }.toMutableList()
                 onFinishScrolling = { getData() }
@@ -137,10 +131,7 @@ class MovieListPager(
                 items = list.distinctBy { it.id }.map {
                     CardItemView.Data(
                         imagePoster = it.posterPath,
-                        title = it.name,
-                        category = "",
-                        "",
-                        ""
+                        title = it.name
                     )
                 }.toMutableList()
                 onFinishScrolling = { getData() }
@@ -157,6 +148,9 @@ class MovieListPager(
     }
 
     companion object {
-        fun createInstance(section: MovieDBSection) : MovieListPager = MovieListPager(section)
+        fun createInstance(section: MovieDBSection) : MovieListPager {
+            val fragment = MovieListPager(section)
+            return fragment
+        }
     }
 }

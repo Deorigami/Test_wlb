@@ -85,14 +85,14 @@ internal class MovieDBRoomRepositoryImplTest {
         // given
         val result: Result<List<Long>> = Result(listOf(1655))
         val movieItemRoomEntity = movieListItemDBMapper.invoke(movieItemEntity)
-        given(dao.insertMovie(listOf(movieItemRoomEntity))).willReturn(listOf(1655))
+        given(dao.insertMovieList(listOf(movieItemRoomEntity))).willReturn(listOf(1655))
         given(dao.insertMovieSection(movieSection)).willReturn(movieSection.id)
         given(dao.insertMovieAndSectionRelation(movieAndSectionRelationEntity)).willReturn(1)
 
         // when
-        val actualResult = repo.insertMovieItem(listOf(movieItemEntity))
+        val actualResult = repo.insertMovieList(listOf(movieItemEntity))
 
-        then(dao).should().insertMovie(listOf(movieItemRoomEntity))
+        then(dao).should().insertMovieList(listOf(movieItemRoomEntity))
         then(dao).should().insertMovieSection(movieSection)
         then(dao).should().insertMovieAndSectionRelation(movieAndSectionRelationEntity)
 
@@ -116,7 +116,8 @@ internal class MovieDBRoomRepositoryImplTest {
                 false,
                 0.0,
                 0,
-                3
+                3,
+                false
             ),
             listOf(MovieSectionRoomEntity(MovieDBSection.NOW_PLAYING_MOVIE.name, 1))
         )

@@ -1,4 +1,4 @@
-package com.ardinata.feature_dashboard.landing.movie_list_pager
+package com.ardinata.feature_dashboard.landing.pager_movie_list
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.fragment.app.activityViewModels
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerDrinkListBinding
-import com.ardinata.feature_dashboard.landing.movie_list_pager.adapter.MovieListVPAdapter
+import com.ardinata.feature_dashboard.landing.pager_movie_list.adapter.MovieListVPAdapter
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.service_movie_db.domain.resource.MovieDBSection
 import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
@@ -41,8 +41,7 @@ class MovieList(
             MovieListPager.createInstance(data)
         }
         adapter = MovieListVPAdapter(
-            childFragmentManager,
-            lifecycle,
+            requireActivity(),
             sectionFragments
         )
     }
@@ -88,5 +87,6 @@ class MovieList(
 
     companion object {
         enum class PageMode{ MOVIE, TV }
+        fun createInstance(section : PageMode) = MovieList(section)
     }
 }

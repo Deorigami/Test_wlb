@@ -1,10 +1,12 @@
 package com.ardinata.test.test_goplay.organism
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.ardinata.component.R
 import com.ardinata.component.databinding.MoleculeTabLayoutItemBinding
 import com.ardinata.test.test_goplay.util.setCompatibleTextAppearance
@@ -41,5 +43,6 @@ class TabsCustomItem(
         binding.indicator.visibility = if (isActive) View.VISIBLE else View.INVISIBLE
         if (isActive) binding.tv.setCompatibleTextAppearance(R.style.TextAppearance_BoldS)
         else binding.tv.setCompatibleTextAppearance(R.style.TextAppearance_CaptionL)
+        binding.tv.setTextColor(ContextCompat.getColor(context, R.color.lightPeriwinlke))
     }
 }

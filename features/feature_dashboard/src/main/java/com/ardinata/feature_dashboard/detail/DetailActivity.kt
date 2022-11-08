@@ -12,7 +12,7 @@ class DetailActivity(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val fragment = DetailPage()
+        val fragment = MovieDBDetailPage()
         fragment.arguments = intent.extras
         supportFragmentManager.beginTransaction().replace(binding.fragmentHolder.id, fragment).commit()
     }

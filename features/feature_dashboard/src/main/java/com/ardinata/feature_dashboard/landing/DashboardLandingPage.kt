@@ -9,11 +9,11 @@ import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
 import com.ardinata.feature_dashboard.landing.mapper.TabsItemMapper
-import com.ardinata.feature_dashboard.landing.movie_list_pager.adapter.DashboardPagerAdapter
-import com.ardinata.feature_dashboard.landing.movie_list_pager.PagerFavDrinkList
-import com.ardinata.feature_dashboard.landing.movie_list_pager.MovieList
+import com.ardinata.feature_dashboard.landing.pager_movie_list.adapter.DashboardPagerAdapter
+import com.ardinata.feature_dashboard.landing.pager_favourite.PagerFavouriteList
+import com.ardinata.feature_dashboard.landing.pager_movie_list.MovieList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
-import com.ardinata.feature_dashboard.landing.search_pager.SearchPager
+import com.ardinata.feature_dashboard.landing.pager_search.SearchPager
 import com.ardinata.feature_util.NetworkStateListener
 import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
 import com.ardinata.test.test_goplay.template.TabsItem
@@ -38,15 +38,14 @@ class DashboardLandingPage(
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         adapter = DashboardPagerAdapter(
-            childFragmentManager,
-            lifecycle,
-            MovieList(MovieList.Companion.PageMode.MOVIE),
-            MovieList(MovieList.Companion.PageMode.TV),
+            requireActivity(),
+            MovieList.createInstance(MovieList.Companion.PageMode.MOVIE),
+            MovieList.createInstance(MovieList.Companion.PageMode.TV),
             SearchPager(),
-            PagerFavDrinkList()
+            PagerFavouriteList()
         )
+        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {

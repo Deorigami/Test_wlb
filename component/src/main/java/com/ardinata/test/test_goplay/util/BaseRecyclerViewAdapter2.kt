@@ -56,8 +56,8 @@ abstract class  BaseRecyclerViewAdapter2<ITEM : Any,V : View>(
 
     override fun onBindViewHolder(holder: ViewHolder<V>, position: Int) {
         holder.apply {
-            onBind(getItem(position), position)
-            itemView.setOnClickListener { onItemPressed(position) }
+            onBind(getItem(holder.absoluteAdapterPosition), holder.absoluteAdapterPosition)
+            itemView.setOnClickListener { onItemPressed(holder.absoluteAdapterPosition) }
         }
     }
 }

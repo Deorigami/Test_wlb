@@ -6,15 +6,13 @@ import com.ardinata.test.test_goplay.core.base.BaseUseCase
 import com.ardinata.test.test_goplay.core.model.Result
 import javax.inject.Inject
 
-class InsertRoomMovieItemUseCase @Inject constructor(
-    private val roomRepo: MovieDBRoomRepository
-) : BaseUseCase<List<MovieListItemEntity>, List<Long>>(){
-
-    override suspend fun build(param: List<MovieListItemEntity>): Result<List<Long>> {
-        return roomRepo.insertMovieList(param)
-    }
-
-    override val default: List<Long>
+class GetFavouriteMovieUseCase @Inject constructor(
+    private val repo: MovieDBRoomRepository
+) : BaseUseCase<Unit, List<MovieListItemEntity>>(){
+    override val default: List<MovieListItemEntity>
         get() = emptyList()
 
+    override suspend fun build(param: Unit): Result<List<MovieListItemEntity>> {
+        return repo.getFavoriteMovie()
+    }
 }

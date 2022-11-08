@@ -75,7 +75,7 @@ class StatefulLiveData<P, R>(
 
     val executionMutable : MediatorLiveData<StatefulResult<R>> = MediatorLiveData()
 
-    fun getData(
+    fun executeLocally(
         param : P,
         onSuccess: ((R) -> Unit) = {},
         onFailed : (Error?) -> Unit = {},

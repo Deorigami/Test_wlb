@@ -9,10 +9,9 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.ardinata.component.databinding.GroupBaseLayoutBinding
 import com.ardinata.test.test_goplay.molecule.IngredientItem
-import com.ardinata.test.test_goplay.util.BaseRecyclerViewAdapter
 import com.ardinata.test.test_goplay.util.BaseRecyclerViewAdapter2
 
-class IngredientsGroup(
+class CastListGroup(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs){
@@ -43,10 +42,10 @@ class IngredientsGroup(
         clipChildren = false
         clipToPadding = false
         binding.rv.apply {
-            val paddingStart = this@IngredientsGroup.paddingStart
-            val paddingEnd = this@IngredientsGroup.paddingEnd
+            val paddingStart = this@CastListGroup.paddingStart
+            val paddingEnd = this@CastListGroup.paddingEnd
             updatePadding(left = paddingStart, right = paddingEnd, top = paddingStart, bottom = paddingStart)
-            adapter = this@IngredientsGroup.adapter
+            adapter = this@CastListGroup.adapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             itemAnimator = null
         }

@@ -1,4 +1,4 @@
-package com.ardinata.feature_dashboard.landing.search_pager
+package com.ardinata.feature_dashboard.landing.pager_search
 
 import android.view.View
 import android.widget.Toast
@@ -8,7 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerSearchBinding
-import com.ardinata.feature_dashboard.landing.search_pager.presenter.SearchPagerViewModel
+import com.ardinata.feature_dashboard.landing.pager_search.presenter.SearchPagerViewModel
+import com.ardinata.service_movie_db.domain.entity.MovieListItemEntity
 import com.ardinata.test.test_goplay.core.base.BaseViewBindingFragment
 import com.ardinata.test.test_goplay.core.extension.textChanges
 import com.ardinata.test.test_goplay.organism.CardItemView
@@ -42,36 +43,7 @@ class SearchPager(
     private fun setObserver() {
         viewModel.run {
             paginatedMoveSearchResult.observe(viewLifecycleOwner){
-                binding?.searchNotFoundImage?.isVisible = it.isNullOrEmpty()
-                it?.let {
-                    binding?.searchInitImage?.isVisible = false
-                    binding?.cardList?.apply {
-                        items = it.map { CardItemView.Data(
-                            imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
-                            title = it.title,
-                            category = "",
-                            "",
-                            ""
-                        ) }.toMutableList()
-                        onFinishScrolling = {
-                            searchMovie(currentSearchKeyWord.value){
-                                Toast.makeText(
-                                    requireContext(),
-                                    requireContext().getString(R.string.data_already_loaded_notice),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                        onCardPressed = { idx ->
-                            it.getOrNull(idx)?.let {
-                                router.navigateToMovieDetailPage(
-                                    requireContext(),
-                                    movieItem = it
-                                )
-                            }
-                        }
-                    }
-                }
+                it?.let { list -> setSearchResultList(list) }
             }
             searchMovie.listen(
                 viewLifecycleOwner,
@@ -92,6 +64,36 @@ class SearchPager(
                     closeLoading()
                 }
             )
+        }
+    }
+
+    private fun setSearchResultList(it: List<MovieListItemEntity>) {
+        binding?.searchNotFoundImage?.isVisible = it.isNullOrEmpty()
+        it.let {
+            binding?.searchInitImage?.isVisible = false
+            binding?.cardList?.apply {
+                items = it.map { CardItemView.Data(
+                    imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
+                    title = it.title,
+                ) }.toMutableList()
+                onFinishScrolling = {
+                    viewModel.searchMovie(viewModel.currentSearchKeyWord.value){
+                        Toast.makeText(
+                            requireContext(),
+                            requireContext().getString(R.string.data_already_loaded_notice),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                onCardPressed = { idx ->
+                    it.getOrNull(idx)?.let {
+                        router.navigateToMovieDetailPage(
+                            requireContext(),
+                            movieItem = it
+                        )
+                    }
+                }
+            }
         }
     }
 

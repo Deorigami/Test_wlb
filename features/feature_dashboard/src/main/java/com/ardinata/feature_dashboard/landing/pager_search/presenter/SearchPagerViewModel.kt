@@ -1,4 +1,4 @@
-package com.ardinata.feature_dashboard.landing.search_pager.presenter
+package com.ardinata.feature_dashboard.landing.pager_search.presenter
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
@@ -51,7 +51,7 @@ class SearchPagerViewModel @Inject constructor(
         val page = if (isSameKeyword.value) searchMovieData?.page?.plus(1) else 1
         val alreadyLastPage = (searchMovieData?.page ?: 1) == searchMovieData?.totalPages && isSameKeyword.value
         if (!alreadyLastPage) {
-            searchMovie.getData(
+            searchMovie.executeLocally(
                 SearchMovieRequestEntity(
                     page.toString(),
                     currentSearchKeyWord.value

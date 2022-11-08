@@ -14,7 +14,7 @@ import com.ardinata.test.test_goplay.util.customSetImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailPage(
+class MovieDBDetailPage(
     override val layout: Int = R.layout.page_drink_detail
 ) : BaseViewBindingFragment<PageDrinkDetailBinding>() {
 
@@ -31,20 +31,27 @@ class DetailPage(
     }
 
     private fun initView() {
+        setMovieDetail()
+        setSeriesDetail()
         binding?.simpleHeader?.apply {
             onBackPressed = { activity?.onBackPressed() }
             onFavButtonChangeListener = { isFav ->
-
+                getMovieItem()?.let {
+                    viewModel.insertFavouriteMovie.executeLocally(it.copy(isFavorite = isFav))
+                }
             }
         }
-        getMovieItem()?.let {
-            binding?.poster?.customSetImage(it.backdropPath)
-            binding?.description?.text = it.overview
-            binding?.gameTitle?.text = it.title
-            viewModel.getMovieCast.getData(
-                it.id.toString(),
+    }
+
+    private fun setSeriesDetail() {
+        getTVItem()?.let { entity ->
+            binding?.poster?.customSetImage(entity.backdropPath)
+            binding?.description?.text = entity.overview
+            binding?.gameTitle?.text = entity.name
+            viewModel.getTvCast.executeLocally(
+                entity.id.toString(),
                 onSuccess = {
-                    binding?.ingredientList?.apply {
+                    binding?.castList?.apply {
                         items = it.cast.filter { it.knownForDepartment == "Acting" }.sortedByDescending { it.popularity }.map { IngredientItem.Data(
                             image = it.profilePath,
                             title = it.name,
@@ -54,15 +61,19 @@ class DetailPage(
                 }
             )
         }
-        getTVItem()?.let {
-            binding?.poster?.customSetImage(it.backdropPath)
-            binding?.description?.text = it.overview
-            binding?.gameTitle?.text = it.name
-            viewModel.getTvCast.getData(
-                it.id.toString(),
+    }
+
+    private fun setMovieDetail() {
+        getMovieItem()?.let { entity ->
+            binding?.poster?.customSetImage(entity.backdropPath)
+            binding?.description?.text = entity.overview
+            binding?.gameTitle?.text = entity.title
+            binding?.simpleHeader?.isFav = entity.isFavorite
+            viewModel.getMovieCast.executeLocally(
+                entity.id.toString(),
                 onSuccess = {
-                    binding?.ingredientList?.apply {
-                        items = it.cast.filter { it.knownForDepartment == "Acting" }.sortedByDescending { it.popularity }.map { IngredientItem.Data(
+                    binding?.castList?.apply {
+                        items = it.cast.asSequence().filter { it.knownForDepartment == "Acting" }.sortedByDescending { it.popularity }.map { IngredientItem.Data(
                             image = it.profilePath,
                             title = it.name,
                             measure = it.character
@@ -75,7 +86,12 @@ class DetailPage(
 
     private fun setObserver() {
         viewModel.run {
-
+            getFavouriteMovie.listen(
+                viewLifecycleOwner,
+                onSuccess = {
+                    binding?.simpleHeader?.isFav = it.any { it.id == getMovieItem()?.id }
+                }
+            )
         }
     }
 

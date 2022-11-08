@@ -113,7 +113,7 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+            insertMovieRoom.executeLocally(newFetchedMovie.map { it.copy(
                 page = popularMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.POPULAR_MOVIE
             ) })
@@ -131,7 +131,7 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+            insertMovieRoom.executeLocally(newFetchedMovie.map { it.copy(
                 page = upcomingMovies.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.UPCOMING_MOVIE
             ) })
@@ -149,7 +149,7 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+            insertMovieRoom.executeLocally(newFetchedMovie.map { it.copy(
                 page = topRatedMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.TOP_RATED_MOVIE
             ) })
@@ -167,7 +167,7 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            insertMovieRoom.getData(newFetchedMovie.map { it.copy(
+            insertMovieRoom.executeLocally(newFetchedMovie.map { it.copy(
                 page = nowPlayingMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.NOW_PLAYING_MOVIE
             ) })
@@ -235,7 +235,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     init {
-        getMovieRoom.getData(Unit)
+        getMovieRoom.executeLocally(Unit)
     }
 
     // GET DATA MOVIES
@@ -243,25 +243,25 @@ class DashboardViewModel @Inject constructor(
     fun getPopularMovieList(){
         val data = popularMovie.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) popularMovie.getData(page.toString())
+        if (page != data?.totalPages) popularMovie.executeLocally(page.toString())
     }
 
     fun getNowPlayingMovieList(){
         val data = nowPlayingMovie.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) nowPlayingMovie.getData(page.toString())
+        if (page != data?.totalPages) nowPlayingMovie.executeLocally(page.toString())
     }
 
     fun getTopRatedMovieList(){
         val data = topRatedMovie.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) topRatedMovie.getData(page.toString())
+        if (page != data?.totalPages) topRatedMovie.executeLocally(page.toString())
     }
 
     fun getUpcomingMovieList(){
         val data = upcomingMovies.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) upcomingMovies.getData(page.toString())
+        if (page != data?.totalPages) upcomingMovies.executeLocally(page.toString())
     }
 
     // GET DATA SERIES
@@ -269,25 +269,25 @@ class DashboardViewModel @Inject constructor(
     fun getOnTheAirTVList(){
         val data = onTheAirTV.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) onTheAirTV.getData(page.toString())
+        if (page != data?.totalPages) onTheAirTV.executeLocally(page.toString())
     }
 
     fun getAiringTodayTVList(){
         val data = airingTodayTV.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) airingTodayTV.getData(page.toString())
+        if (page != data?.totalPages) airingTodayTV.executeLocally(page.toString())
     }
 
     fun getTopRatedTVList(){
         val data = topRatedTV.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) topRatedTV.getData(page.toString())
+        if (page != data?.totalPages) topRatedTV.executeLocally(page.toString())
     }
 
     fun getPopularTVList(){
         val data = popularTV.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
-        if (page != data?.totalPages) popularTV.getData(page.toString())
+        if (page != data?.totalPages) popularTV.executeLocally(page.toString())
     }
 
     fun getOfflineList(section: MovieDBSection) : List<MovieListItemEntity> {

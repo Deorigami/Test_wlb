@@ -27,9 +27,6 @@ class CardGroup(
             view.apply {
                 imagePoster = item.imagePoster
                 title = item.title
-                alcohol = item.alcohol
-                glass = item.glass
-                category = item.category
                 setOnClickListener { onCardPressed.invoke(position) }
             }
         }
@@ -92,7 +89,6 @@ class CardGroup(
                     }
                 }
             })
-            itemAnimator = null
         }
 
         // Setting padding to 0 then set padding to the rv to prevent shadow issues on new android 13 when the item strecth like ios

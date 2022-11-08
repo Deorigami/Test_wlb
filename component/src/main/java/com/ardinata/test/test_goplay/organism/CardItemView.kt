@@ -16,30 +16,9 @@ class CardItemView(
     data class Data(
         val imagePoster: Any? = null,
         val title: String = "",
-        val category : String,
-        val glass: String,
-        val alcohol: String
     )
 
     var imagePoster: Any? = null
-        set(value) {
-            field = value
-            refreshView()
-        }
-
-    var category: String = ""
-        set(value) {
-            field = value
-            refreshView()
-        }
-
-    var alcohol: String = ""
-        set(value) {
-            field = value
-            refreshView()
-        }
-
-    var glass: String = ""
         set(value) {
             field = value
             refreshView()

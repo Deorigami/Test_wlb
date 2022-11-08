@@ -19,5 +19,5 @@ data class MovieListItemRoomEntity(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int,
-    val page: Long
+    val page: Long,
 )

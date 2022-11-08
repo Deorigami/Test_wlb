@@ -22,9 +22,6 @@ class CardGroupAdapter(
             view.apply {
                 imagePoster = data.imagePoster
                 title = data.title
-                alcohol = data.alcohol
-                glass = data.glass
-                category = data.category
                 setOnClickListener { onFavButtonPressed.invoke(position) }
             }
         }

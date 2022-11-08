@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@id/rightItem"
         app:boxStrokeColor="@color/transparent"
-        app:hintTextColor="@color/almostBlack"
+        app:hintTextColor="@color/lightPeriwinlke"
+        android:textColorHint="@color/hint_text_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="50dp"
+            android:textColor="@color/lightPeriwinlke"
             android:textAppearance="@style/TextAppearance.Paragraph" />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
