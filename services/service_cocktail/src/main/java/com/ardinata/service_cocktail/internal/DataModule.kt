@@ -3,9 +3,7 @@ package com.ardinata.service_cocktail.internal
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import com.ardinata.service_cocktail.data.local.CocktailDB
 import com.ardinata.service_cocktail.data.local.MovieDB
-import com.ardinata.service_cocktail.data.local.dao.CocktailDao
 import com.ardinata.service_cocktail.data.local.dao.MovieDBDao
 import com.ardinata.service_cocktail.data.webservice.service.MovieDBService
 import dagger.Module
@@ -26,26 +24,12 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun providesDataBase(@ApplicationContext context: Context) : CocktailDB = Room.databaseBuilder(
-        context,
-        CocktailDB::class.java,
-        "CocktailDB"
-    ).setQueryCallback({ sqlQuery, _ ->
-            Log.d("ANGGATAG", sqlQuery)
-    }, Executors.newSingleThreadExecutor()).fallbackToDestructiveMigration().build()
-
-    @Provides
-    @Singleton
-    fun providesCocktailDao(db: CocktailDB) : CocktailDao = db.getDao()
-
-    @Provides
-    @Singleton
     fun providesMovieDB(@ApplicationContext context: Context) : MovieDB = Room.databaseBuilder(
         context,
         MovieDB::class.java,
         "MovieDB"
     ).setQueryCallback({ sqlQuery, _ ->
-        Log.d("ANGGATAG", sqlQuery)
+        Log.d("ROOM DB", sqlQuery)
     }, Executors.newSingleThreadExecutor()).fallbackToDestructiveMigration().build()
 
     @Provides

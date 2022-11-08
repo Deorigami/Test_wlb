@@ -4,4 +4,5 @@
     <string name="page_title" translatable="false">Recipe For You</string>
     <string name="page_empty_state_title" translatable="false">Minuman Tidak Ditemukan Berdasarkan Filter</string>
     <string name="drinks_detail_page_navbar_title" translatable="false">Favorite Drinks</string>
+    <string name="data_already_loaded_notice" translatable="false">All Data Already Loaded.</string>
 </resources>

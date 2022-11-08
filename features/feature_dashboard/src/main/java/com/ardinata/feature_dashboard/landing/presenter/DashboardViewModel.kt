@@ -224,7 +224,7 @@ class DashboardViewModel @Inject constructor(
         getMovieRoom.getData(
             MovieDBSection.NOW_PLAYING_MOVIE,
             onSuccess = {
-                Log.d("ANGGATAG", "getMovieRoom : $it")
+
             }
         )
     }

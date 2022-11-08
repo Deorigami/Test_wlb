@@ -4,6 +4,7 @@ import com.ardinata.service_cocktail.data.webservice.mapper.MovieListDtoMapper
 import com.ardinata.service_cocktail.data.webservice.mapper.TVListDtoMapper
 import com.ardinata.service_cocktail.data.webservice.service.MovieDBService
 import com.ardinata.service_cocktail.domain.entity.MovieListEntity
+import com.ardinata.service_cocktail.domain.entity.SearchMovieRequestEntity
 import com.ardinata.service_cocktail.domain.entity.TVListEntity
 import com.ardinata.service_cocktail.domain.repository.MovieDBServiceRepository
 import com.ardinata.service_cocktail.domain.resource.MovieDBSection
@@ -45,5 +46,9 @@ class MovieDBServiceRepositoryImpl @Inject constructor(
 
     override suspend fun getPopularTV(page: String): Result<TVListEntity> {
         return tvListDtoMapper.invoke(api.getPopularTV(page), MovieDBSection.POPULAR_TV)
+    }
+
+    override suspend fun searchTV(param: SearchMovieRequestEntity): Result<MovieListEntity> {
+        return movieListDtoMapper.invoke(api.searchMovie(param.query, param.page), MovieDBSection.NONE)
     }
 }

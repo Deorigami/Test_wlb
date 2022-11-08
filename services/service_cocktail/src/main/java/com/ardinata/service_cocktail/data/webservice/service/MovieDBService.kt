@@ -55,5 +55,15 @@ interface MovieDBService {
         @Query("language") lang:String = "en-US"
     ) : TVListDto
 
+    @GET("search/movie")
+    suspend fun searchMovie(
+        @Query("query") query : String,
+        @Query("page") page: String,
+        @Query("language") lang:String = "en-US"
+    ) : MovieListDto
 
+    @GET("search/tv")
+    suspend fun searchTV(
+        @Query("query") query : String
+    ) : TVListDto
 }

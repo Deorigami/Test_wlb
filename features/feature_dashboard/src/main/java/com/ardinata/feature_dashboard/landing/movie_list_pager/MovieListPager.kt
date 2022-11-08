@@ -40,6 +40,7 @@ class MovieListPager(
             MovieDBSection.POPULAR_TV -> viewModel.getPopularTVList()
             MovieDBSection.TOP_RATED_TV -> viewModel.getTopRatedTVList()
             MovieDBSection.AIRING_TODAY_TV -> viewModel.getAiringTodayTVList()
+            else -> Unit
         }
     }
 

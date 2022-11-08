@@ -84,6 +84,7 @@ class StatefulLiveData<P, R>(
         onComplete: (() -> Unit) = {}
     ){
         isTriggered.postValue(true)
+        isLoading.postValue(true)
         executor.execute(
             coroutineScope,
             param

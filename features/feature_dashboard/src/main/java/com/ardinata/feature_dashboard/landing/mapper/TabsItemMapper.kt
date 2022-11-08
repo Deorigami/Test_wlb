@@ -49,11 +49,11 @@ class TabsItemMapper {
                 2 -> data = TabsItem.Data(
                     activeIcon = ContextCompat.getDrawable(
                         context,
-                        R.drawable.ic_tv_filled
+                        R.drawable.ic_search_filled
                     ),
                     inactiveIcon = ContextCompat.getDrawable(
                         context,
-                        R.drawable.ic_tv
+                        R.drawable.ic_search
                     ),
                     activeColor = ContextCompat.getColor(context, R.color.brightSkyBlue),
                     inactiveColor = ContextCompat.getColor(
