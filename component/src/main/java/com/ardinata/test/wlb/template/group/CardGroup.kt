@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ardinata.component.databinding.GroupBaseLayoutBinding
 import com.ardinata.test.wlb.organism.CardItemView
 import com.ardinata.test.wlb.template.group.adapter.CardGroupAdapter
+import com.ardinata.test.wlb.util.BaseRecyclerViewAdapter2
 import com.ardinata.test.wlb.util.dp
 
 class CardGroup(
@@ -21,16 +22,26 @@ class CardGroup(
 ) : LinearLayout(context, attrs){
     private val binding = GroupBaseLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val adapter by lazy {
-        CardGroupAdapter {
-            onCardPressed.invoke(it)
+    private val adapter = object : BaseRecyclerViewAdapter2<CardItemView.Data, CardItemView>() {
+        override fun ViewHolder<CardItemView>.onBind(item: CardItemView.Data, position: Int) {
+            view.apply {
+                imagePoster = item.imagePoster
+                title = item.title
+                alcohol = item.alcohol
+                glass = item.glass
+                category = item.category
+                setOnClickListener { onCardPressed.invoke(position) }
+            }
         }
+
+        override fun generateView(viewType: Int): CardItemView = CardItemView(context)
+
     }
 
     var items = mutableListOf<CardItemView.Data>()
         set(value){
             field = value
-            adapter.items = value
+            adapter.submitList(value)
         }
 
     var onFinishScrolling : () -> Unit = {}
@@ -55,7 +66,7 @@ class CardGroup(
             val paddingStart = this@CardGroup.paddingStart
             val paddingEnd = this@CardGroup.paddingEnd
             updatePadding(left = paddingStart, right = paddingEnd, top = paddingStart, bottom = paddingStart)
-            adapter = this@CardGroup.adapter.also { items = this@CardGroup.items }
+            adapter = this@CardGroup.adapter
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             requestDisallowInterceptTouchEvent(false)
             addOnScrollListener(object : RecyclerView.OnScrollListener() {

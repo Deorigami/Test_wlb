@@ -1,10 +1,14 @@
 package com.ardinata.feature_dashboard.landing.movie_list_pager
 
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PagerMovieListBinding
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
+import com.ardinata.feature_util.NetworkStateListener
 import com.ardinata.service_cocktail.domain.entity.MovieListItemEntity
 import com.ardinata.service_cocktail.domain.entity.TVListItemEntity
 import com.ardinata.service_cocktail.domain.resource.MovieDBSection
@@ -27,7 +31,26 @@ class MovieListPager(
     override fun didMount(view: View) {
         super.didMount(view)
         setObserver()
-        getData()
+        NetworkStateListener.listen(
+            requireContext(),
+            onAvailable = {
+                viewModel.isNetworkAvailable.postValue(true)
+                getData()
+            },
+            onLost = {
+                viewModel.isNetworkAvailable.postValue(false)
+                viewModel.getMovieRoom.getData(
+                    Unit,
+                    onSuccess = {
+                        lifecycleScope.launchWhenResumed {
+                            setMovieSection(viewModel.getOfflineList(section))
+                        }
+                    },
+                    onComplete = {}
+                )
+
+            }
+        )
     }
 
     private fun getData() {
@@ -79,32 +102,36 @@ class MovieListPager(
     private fun setMovieSection(
         list: List<MovieListItemEntity>,
     ) {
-        binding?.cardList?.apply {
-            items = list.distinctBy { it.id }.map {
-                CardItemView.Data(
-                    imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
-                    title = it.title,
-                    category = "",
-                    "",
-                    ""
-                )
-            }.toMutableList()
-            onFinishScrolling = { getData() }
+        lifecycleScope.launchWhenResumed {
+            binding?.cardList?.apply {
+                items = list.distinctBy { it.id }.map {
+                    CardItemView.Data(
+                        imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
+                        title = it.title,
+                        category = "",
+                        "",
+                        ""
+                    )
+                }.toMutableList()
+                onFinishScrolling = { getData() }
+            }
         }
     }
 
     private fun setSeriesSection(list: List<TVListItemEntity>){
-        binding?.cardList?.apply {
-            items = list.distinctBy { it.id }.map {
-                CardItemView.Data(
-                    imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
-                    title = it.name,
-                    category = "",
-                    "",
-                    ""
-                )
-            }.toMutableList()
-            onFinishScrolling = { getData() }
+        lifecycleScope.launchWhenResumed {
+            binding?.cardList?.apply {
+                items = list.distinctBy { it.id }.map {
+                    CardItemView.Data(
+                        imagePoster = "https://image.tmdb.org/t/p/w200${it.posterPath.ifEmpty { it.backdropPath }}",
+                        title = it.name,
+                        category = "",
+                        "",
+                        ""
+                    )
+                }.toMutableList()
+                onFinishScrolling = { getData() }
+            }
         }
     }
 

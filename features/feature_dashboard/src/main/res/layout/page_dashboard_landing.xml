@@ -18,6 +18,18 @@
         android:layout_height="1dp"
         android:background="@color/battleshipGrey"
         />
+    <TextView
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/tabs"
+        android:text="You're on Offline Mode"
+        android:gravity="center"
+        android:paddingVertical="8dp"
+        android:textAppearance="@style/TextAppearance.CaptionXL"
+        android:textColor="@color/white"
+        android:id="@+id/offlineNotice"
+        android:background="@color/lipstick"
+        android:layout_height="wrap_content"/>
+
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

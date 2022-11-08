@@ -9,10 +9,10 @@ import com.ardinata.service_cocktail.data.local.entity.MovieWithSectionRoomEntit
 @Dao
 interface MovieDBDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(item : MovieListItemRoomEntity) : Long
+    fun insertMovie(items : List<MovieListItemRoomEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieandSectionRelation(movieAndSectionRelation : MovieAndSectionRelationEntity) : Long
+    fun insertMovieAndSectionRelation(movieAndSectionRelation : MovieAndSectionRelationEntity) : Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieSection(movieSection : MovieSectionRoomEntity) : Long

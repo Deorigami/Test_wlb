@@ -3,7 +3,9 @@ package com.ardinata.feature_dashboard.landing
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.ardinata.feature_dashboard.DashboardLandingContract
 import com.ardinata.feature_dashboard.R
 import com.ardinata.feature_dashboard.databinding.PageDashboardLandingBinding
@@ -13,6 +15,7 @@ import com.ardinata.feature_dashboard.landing.movie_list_pager.PagerFavDrinkList
 import com.ardinata.feature_dashboard.landing.movie_list_pager.MovieList
 import com.ardinata.feature_dashboard.landing.presenter.DashboardViewModel
 import com.ardinata.feature_dashboard.landing.search_pager.SearchPager
+import com.ardinata.feature_util.NetworkStateListener
 import com.ardinata.test.wlb.core.base.BaseViewBindingFragment
 import com.ardinata.test.wlb.template.TabsItem
 import com.google.android.material.tabs.TabLayout
@@ -55,9 +58,15 @@ class DashboardLandingPage(
         super.didMount(view)
         setupPager()
         setupListener()
-        viewModel.run {
-
-        }
+        NetworkStateListener.listen(
+            requireContext(),
+            onAvailable = {
+                lifecycleScope.launchWhenResumed { binding?.offlineNotice?.isVisible = false }
+            },
+            onLost = {
+                lifecycleScope.launchWhenResumed { binding?.offlineNotice?.isVisible = true }
+            }
+        )
     }
 
     private fun setupPager() {

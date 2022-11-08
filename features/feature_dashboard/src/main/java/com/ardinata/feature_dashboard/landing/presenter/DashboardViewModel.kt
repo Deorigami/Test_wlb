@@ -10,6 +10,7 @@ import com.ardinata.service_cocktail.domain.usecase.local.GetRoomMovieItemUseCas
 import com.ardinata.service_cocktail.domain.usecase.local.InsertRoomMovieItemUseCase
 import com.ardinata.service_cocktail.domain.usecase.service.*
 import com.ardinata.test.wlb.core.base.BaseViewModel
+import com.ardinata.test.wlb.core.extension.NonNullMutableLiveData
 import com.ardinata.test.wlb.core.extension.StatefulLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -34,8 +35,22 @@ class DashboardViewModel @Inject constructor(
     insertRoomMovieItemUseCase: InsertRoomMovieItemUseCase,
     getRoomMovieItemUseCase: GetRoomMovieItemUseCase
 ) : BaseViewModel(){
+
+    val isNetworkAvailable = NonNullMutableLiveData(true)
+
     override fun getKillableStatefulLiveData(): List<StatefulLiveData<*, *>> {
-        return listOf()
+        return listOf(
+            upcomingMovies,
+            topRatedMovie,
+            nowPlayingMovie,
+            popularMovie,
+            popularTV,
+            topRatedMovie,
+            onTheAirTV,
+            airingTodayTV,
+            insertMovieRoom,
+            getMovieRoom
+        )
     }
 
     private val upcomingMovies = StatefulLiveData(
@@ -83,7 +98,7 @@ class DashboardViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO)
     )
 
-    private val getMovieRoom = StatefulLiveData(
+    val getMovieRoom = StatefulLiveData(
         getRoomMovieItemUseCase,
         CoroutineScope(Dispatchers.IO)
     )
@@ -99,11 +114,11 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            value = newValue
             insertMovieRoom.getData(newFetchedMovie.map { it.copy(
                 page = popularMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.POPULAR_MOVIE
             ) })
+            value = newValue
         }
         addSource(popularMovie.onSuccess){ update() }
     }
@@ -117,11 +132,11 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            value = newValue
             insertMovieRoom.getData(newFetchedMovie.map { it.copy(
                 page = upcomingMovies.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.UPCOMING_MOVIE
             ) })
+            value = newValue
         }
         addSource(upcomingMovies.onSuccess){ update() }
     }
@@ -135,11 +150,11 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            value = newValue
             insertMovieRoom.getData(newFetchedMovie.map { it.copy(
                 page = topRatedMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.TOP_RATED_MOVIE
             ) })
+            value = newValue
         }
         addSource(topRatedMovie.onSuccess){ update() }
     }
@@ -153,11 +168,11 @@ class DashboardViewModel @Inject constructor(
                     addAll(newFetchedMovie)
                 }
             }
-            value = newValue
             insertMovieRoom.getData(newFetchedMovie.map { it.copy(
                 page = nowPlayingMovie.onSuccess.value?.page?.toLong() ?: 1L,
                 section = MovieDBSection.NOW_PLAYING_MOVIE
             ) })
+            value = newValue
         }
         addSource(nowPlayingMovie.onSuccess){ update() }
     }
@@ -221,12 +236,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     init {
-        getMovieRoom.getData(
-            MovieDBSection.NOW_PLAYING_MOVIE,
-            onSuccess = {
-
-            }
-        )
+        getMovieRoom.getData(Unit)
     }
 
     // GET DATA MOVIES
@@ -279,6 +289,12 @@ class DashboardViewModel @Inject constructor(
         val data = popularTV.onSuccess.value
         val page = data?.page?.plus(1) ?: 1
         if (page != data?.totalPages) popularTV.getData(page.toString())
+    }
+
+    fun getOfflineList(section: MovieDBSection) : List<MovieListItemEntity> {
+        val data = getMovieRoom.onSuccess.value?.apply {
+        }?.filter { it.section == section }
+        return data ?: emptyList()
     }
 
 }

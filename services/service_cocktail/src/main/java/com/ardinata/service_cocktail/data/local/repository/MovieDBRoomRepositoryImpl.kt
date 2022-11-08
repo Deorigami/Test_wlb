@@ -18,24 +18,32 @@ class MovieDBRoomRepositoryImpl @Inject constructor(
     private val movieListItemRoomToDomainEntityMapper: MovieListItemRoomToDomainEntityMapper
 ) : MovieDBRoomRepository {
     override suspend fun insertMovieItem(item: List<MovieListItemEntity>): Result<Long> {
+        dao.insertMovie(item.map { movieListItemDBMapper.invoke(it) })
         item.forEach {
-            dao.insertMovie(movieListItemDBMapper.invoke(it))
-            val sectionId = dao.insertMovieSection(MovieSectionRoomEntity(it.section.name))
-            dao.insertMovieandSectionRelation(MovieAndSectionRelationEntity(it.id.toLong(), sectionId))
+            val terrifierFound = it.title.contains("Terrifier 2")
+            if (terrifierFound){
+//                Log.d("ANGGATAG", "${it.title} : ${it.section.name}")
+            }
+            val sectionId = dao.insertMovieSection(MovieSectionRoomEntity(it.section.name)).also {
+//                if (terrifierFound) Log.d("ANGGATAG", "MovieSectionId : $it")
+            }
+            dao.insertMovieAndSectionRelation(MovieAndSectionRelationEntity(it.id.toLong(), sectionId)).also {
+//                if (terrifierFound) Log.d("ANGGATAG", "MovieRelation : $it")
+            }
         }
         return Result(1)
     }
 
-    override suspend fun getMovieBySection(
-        section: MovieDBSection,
-    ): Result<List<MovieListItemEntity>> {
+    override suspend fun getMovieBySection(): Result<List<MovieListItemEntity>> {
         val data = dao.getMovieList()
         val movieList = mutableListOf<MovieListItemEntity>()
 
         data.forEach {
-            val movieEntity = movieListItemRoomToDomainEntityMapper.invoke(it.movie, MovieDBSection.invoke(it.movieSection.firstOrNull()?.sectionName ?: ""))
-            movieList.add(movieEntity)
+            it.movieSection.forEach { section ->
+                val movieEntity = movieListItemRoomToDomainEntityMapper.invoke(it.movie, MovieDBSection.invoke(section.sectionName))
+                movieList.add(movieEntity)
+            }
         }
-        return Result(movieList.filter { it.section == section })
+        return Result(movieList)
     }
 }
