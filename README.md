@@ -57,6 +57,7 @@ sonarqube.properties {
 ![CodescanResult](https://lh3.googleusercontent.com/c1cqycaDEMSdC3SlpYDAT1EeeWY70P2oMPbnyiFPUNqQHKSS7ohHWGafXMvUtrsbVcyHn48u0-wDtI6QjuhRPQi2jyuYbabS7q-G1qiN2Nz-988Sa9gnSO98Fe59HfsS7dLMuQyN3g=w2400)
 
 ## Which I have tested
+#### Only In Service Layer
 * UseCase
 * RoomDB Repository
 * Mapper
